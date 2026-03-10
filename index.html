@@ -10,6 +10,8 @@
     />
     <!-- FIXME cannonical link -->
     <!-- style sheets -->
+    <link rel="stylesheet" href="https://use.typekit.net/nfh7kog.css" />
+    <link rel="stylesheet" href="styles.css" />
     <!-- social media tags -->
   </head>
   <body>
@@ -45,7 +47,7 @@
         <div class="r">
           <ul>
             <li>
-              <button class="icon-bg" aria-label="search">
+              <button class="icon-bg dk-icon-bg" aria-label="search">
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
@@ -58,7 +60,7 @@
               </button>
             </li>
             <li>
-              <a href="#" class="icon-bg" aria-label="messages">
+              <button class="icon-bg" aria-label="messages">
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M1.60175 4.20114C2.14997 3.47258 3.02158 3 4 3H20C20.9784 3 21.85 3.47258 22.3982 4.20113L12 11.7635L1.60175 4.20114Z"
@@ -69,10 +71,10 @@
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" class="icon-bg" aria-label="notifications">
+              <button class="icon-bg" aria-label="notifications">
                 <svg viewBox="0 0 24 24">
                   <path
                     d="M8.35179 20.2418C9.19288 21.311 10.5142 22 12 22C13.4858 22 14.8071 21.311 15.6482 20.2418C13.2264 20.57 10.7736 20.57 8.35179 20.2418Z"
@@ -83,12 +85,12 @@
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" aria-label="my profile">
-                <!-- FIXME: profile img here -->
-              </a>
+              <button aria-label="my profile" class="icon-bg profile">
+                <img src="images/user.jpg" alt="user" />
+              </button>
             </li>
           </ul>
         </div>
@@ -96,8 +98,11 @@
     </header>
     <main>
       <section id="hero">
-        <p class="h"></p>
-        <p class="sb"></p>
+        <p class="h">Stay motivated.</p>
+        <p class="sb">
+          Join our 2026 reading challenge. Start of the new year on the the
+          right foot.
+        </p>
         <div class="btns">
           <button class="primary">cta</button>
           <button class="secondary">see more</button>
@@ -106,19 +111,23 @@
       <div id="modules">
         <section class="shelf" id="prev-read">
           <div class="arch-bg">
-            <a href="#" aria-label="previously read books shelf">
+            <a
+              href="#"
+              aria-label="previously read books shelf"
+              class="icon-bg"
+            >
               <svg fill="currentColor" viewBox="0 0 1920 1920">
                 <use href="#eye"></use>
               </svg>
             </a>
-            <h2>Books you read in <span class="year"></span>.</h2>
+            <h2>Books you read in <span class="year">2026</span>.</h2>
           </div>
           <div class="books"></div>
           <div class="border"></div>
         </section>
         <section class="shelf" id="curr-reading">
           <div class="arch-bg">
-            <a href="#" aria-label="curently reading shelf">
+            <a href="#" aria-label="curently reading shelf" class="icon-bg">
               <svg fill="currentColor" viewBox="0 0 1920 1920">
                 <use href="#eye"></use>
               </svg>
@@ -137,7 +146,7 @@
         </section>
         <section class="shelf" id="discover">
           <div class="arch-bg">
-            <a href="#" aria-label="discover books">
+            <a href="#" aria-label="discover books" class="icon-bg">
               <svg fill="currentColor" viewBox="0 0 1920 1920">
                 <use href="#eye"></use>
               </svg>
@@ -149,7 +158,7 @@
         </section>
         <section class="shelf" id="community">
           <div class="arch-bg">
-            <a href="#" aria-label="community reads">
+            <a href="#" aria-label="community reads" class="icon-bg">
               <svg fill="currentColor" viewBox="0 0 1920 1920">
                 <use href="#eye"></use>
               </svg>
@@ -161,7 +170,7 @@
         </section>
         <section class="news">
           <div class="arch-bg">
-            <a href="#" aria-label="news and stories">
+            <a href="#" aria-label="news and stories" class="icon-bg">
               <svg fill="currentColor" viewBox="0 0 1920 1920">
                 <use href="#eye"></use>
               </svg>

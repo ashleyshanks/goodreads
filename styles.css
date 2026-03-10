@@ -1,0 +1,264 @@
+/* - - - resets ---------- RESETS ------------ - - - - - - */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  min-width: 1100px;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+}
+
+/* - - - - - - ---------- RESETS END ------------ - - - - -
+- - - root ----------- ROOT ------------- - - - - - - - */
+
+:root {
+  --lt-color: #fefdfb;
+  --md-neutral: #e1d8ce;
+  --dk-neutral: #38291e;
+  --lt-green: #bfc8a3;
+  --dk-green: #484f34;
+}
+
+/* - - - - - - ----------- ROOT END ------------- - - - - -  
+- - - fonts ----------- FONTS ------------ - - - - - - - */
+body {
+  font-family: neue-haas-grotesk-display, sans-serif;
+}
+
+nav,
+h2,
+h3,
+blockquote {
+  font-family: lora, serif;
+}
+
+nav li {
+  text-transform: lowercase;
+}
+
+/* - - - - - - ----------- FONT END ------------- - - - - -  
+- - -  ----------- MAIN ------------ - - - - - - - */
+body {
+  margin: 1em 5em;
+  background-image: url("images/vine-bg.png");
+  background-repeat: no-repeat;
+}
+/* - - - - - - ----------- MAIN END ------------- - - - - -  
+- - -  ----------- ICONS ------------ - - - - - - - */
+
+.icon-bg {
+  background-color: var(--lt-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dk-icon-bg {
+  background-color: var(--dk-neutral);
+}
+
+svg {
+  width: 25px;
+  color: var(--dk-neutral);
+  fill: none;
+}
+
+.dk-icon-bg svg {
+  color: var(--lt-color);
+}
+
+button.profile {
+  overflow: hidden;
+  padding: 0;
+}
+
+button.profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* - - - - - - ----------- ICONS END ------------- - - - - -  
+- - -  ----------- GRAPHIC ELEMENTS ------------ - - - - - - - */
+
+.arch-bg {
+  background-color: var(--md-neutral);
+  border-radius: 30px 30px 10px 10px;
+}
+
+/* - - - - - - ----------- graphic elements end ------------- - - - - -  
+- - -  ----------- nav ------------ - - - - - - - */
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+}
+
+nav ul,
+.r ul,
+div.l {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  padding: 0.5em;
+}
+
+nav li {
+  margin-right: 1em;
+}
+
+.r li {
+  margin-right: 0.5em;
+}
+
+.sm-logo {
+  padding: 0.15em;
+  padding-top: 0.4em;
+  margin-right: 1em;
+}
+
+.hide {
+  display: none;
+}
