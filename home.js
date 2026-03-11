@@ -1,8 +1,7 @@
 //get data
-console.log("script loaded");
 let dataLoadedSuccess = false;
 
-const dataInit = () => {
+const initializeBookData = () => {
   //attempt to load curr read, prev read, recommendeded
   const currReading = JSON.parse(localStorage.getItem("currReading")) || [];
   const prevRead = JSON.parse(localStorage.getItem("prevRead")) || [];
@@ -11,7 +10,7 @@ const dataInit = () => {
   return { currReading, prevRead, recommended };
 };
 
-let { currReading, prevRead, recommended } = dataInit();
+let { currReading, prevRead, recommended } = initializeBookData();
 let books = {};
 
 //check to see if items existed in local storage
