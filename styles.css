@@ -113,17 +113,7 @@ ol,
 ul {
   list-style: none;
 }
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -132,11 +122,6 @@ table {
 a {
   text-decoration: none;
   color: inherit;
-}
-
-body {
-  min-width: 1100px;
-  margin: 0 auto;
 }
 
 button {
@@ -148,22 +133,25 @@ button {
 
 :root {
   --lt-color: #fefdfb;
-  --md-neutral: #e1d8ce;
+  --md-neutral: #dacec2;
   --dk-neutral: #38291e;
   --lt-green: #bfc8a3;
-  --dk-green: #484f34;
+  --dk-green: #37421c;
 }
 
 /* - - - - - - ----------- ROOT END ------------- - - - - -  
 - - - fonts ----------- FONTS ------------ - - - - - - - */
-body {
+body,
+button {
   font-family: neue-haas-grotesk-display, sans-serif;
+  color: var(--dk-neutral);
 }
 
 nav,
 h2,
 h3,
-blockquote {
+blockquote,
+p.h {
   font-family: lora, serif;
 }
 
@@ -171,20 +159,36 @@ nav li {
   text-transform: lowercase;
 }
 
+p.h {
+  font-size: 3em;
+  font-weight: 800;
+  font-style: italic;
+}
+
+blockquote {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
 /* - - - - - - ----------- FONT END ------------- - - - - -  
 - - -  ----------- MAIN ------------ - - - - - - - */
 body {
-  margin: 1em 5em;
-  background-image: url("images/vine-bg.png");
-  background-repeat: no-repeat;
+  margin: 1em;
+  background-color: var(--lt-color);
 }
+
+main {
+  margin: 0 4em;
+}
+
 /* - - - - - - ----------- MAIN END ------------- - - - - -  
 - - -  ----------- ICONS ------------ - - - - - - - */
 
 .icon-bg {
   background-color: var(--lt-color);
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -195,11 +199,20 @@ body {
   background-color: var(--dk-neutral);
 }
 
-svg {
+.icon-bg svg {
   width: 25px;
   color: var(--dk-neutral);
   fill: none;
 }
+
+img.eye {
+  width: 35px;
+}
+
+/* svg.icon {
+  color: var(--dk-neutral);
+  width: 25px;
+} */
 
 .dk-icon-bg svg {
   color: var(--lt-color);
@@ -218,14 +231,91 @@ button.profile img {
 
 /* - - - - - - ----------- ICONS END ------------- - - - - -  
 - - -  ----------- GRAPHIC ELEMENTS ------------ - - - - - - - */
-
-.arch-bg {
-  background-color: var(--md-neutral);
-  border-radius: 30px 30px 10px 10px;
+body {
+  background-image: url("images/canvastexture.png");
+  background-blend-mode: multiply;
 }
 
-/* - - - - - - ----------- graphic elements end ------------- - - - - -  
-- - -  ----------- nav ------------ - - - - - - - */
+.arch-bg {
+  background: url(images/canvastexture.png), var(--md-neutral);
+  border-radius: 30px 30px 10px 10px;
+  display: flex;
+  align-items: center;
+  padding: 0.4em;
+  gap: 0.4em;
+}
+
+/* - - - - - - ----------- graphic elements end ------------- - - - - -  */
+
+/* - - -  ----------- btns ------------ - - - - - - - */
+
+button.primary,
+button.secondary,
+button.tertiary {
+  border-radius: 20px;
+  width: 140px;
+  height: 30px;
+}
+
+button.primary {
+  background: url(images/canvastexture.png), var(--dk-green);
+  color: var(--lt-color);
+}
+
+button.secondary {
+  border: 2px solid var(--dk-green);
+  color: var(--dk-green);
+  background-color: transparent;
+}
+
+button.tertiary {
+  color: var(--dk-green);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.btns {
+  display: flex;
+  gap: 0.5em;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* - - - - - - ----------- btns end ------------- - - - - -  
+- - -  ----------- layout ------------ - - - - - - - */
+p.h {
+  margin-bottom: 0.3em;
+}
+
+p.sb {
+  margin-bottom: 0.6em;
+  width: 20em;
+}
+
+p:not(p.h) {
+  line-height: 2em;
+}
+
+#modules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+/* 
+#prev-read,
+#qt {
+  grid-column: 1 / 2;
+}
+
+#curr-reading,
+#discover {
+  grid-column: 2 / 3;
+}
+
+#community {
+  grid-column: 1 / 3;
+} */
+
+/*- - -  ----------- nav ------------ - - - - - - - */
 
 .nav-bar {
   display: flex;
@@ -262,3 +352,39 @@ nav li {
 .hide {
   display: none;
 }
+
+/* - - - - - - ----------- nav end ------------- - - - - -  */
+/* - - -  ----------- hero ------------ - - - - - - - */
+#hero {
+  text-align: center;
+  width: 40vw;
+  margin-top: 4em;
+  margin-bottom: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bg-scroll-area {
+  height: auto;
+  position: absolute;
+  z-index: -1;
+}
+
+#bg-img {
+  height: 211vw;
+  margin-top: -6vh;
+  margin-left: 41vw;
+  position: sticky;
+}
+
+/* - - - - - - ----------- hero end ------------- - - - - - */
+/* - - - - - - --------- quote ----------- - - - - -  */
+img.q {
+  width: 20px;
+}
+
+#qt img:nth-of-type(2) {
+  width: 80px;
+}
+/* - - -  ----------- quote end  ------------ - - - - - - - */

@@ -16,15 +16,10 @@
   </head>
   <body>
     <!-- FIXME skip links -->
-    <svg class="hide">
-      <defs>
-        <path
-          id="eye"
-          d="M960 1277.853c-175.297 0-317.951-142.654-317.951-317.951 0-175.297 142.654-317.951 317.951-317.951 175.297 0 317.951 142.654 317.951 317.951 0 175.297-142.654 317.95-317.951 317.95Zm948.342-341.585C1720.645 558.648 1357.332 324 960 324c-397.333 0-760.645 234.648-948.342 612.268L0 959.902l11.658 23.634c187.697 377.62 551.01 612.268 948.342 612.268 397.333 0 760.645-234.648 948.342-612.268L1920 959.902l-11.658-23.634Z"
-          fill-rule="evenodd"
-        />
-      </defs>
-    </svg>
+    <div id="bg-scroll-area">
+      <img id="bg-img" src="images/vine-bg.png" alt="vine" />
+      <!-- <div id="bg-img"></div> -->
+    </div>
     <header>
       <h1 class="hide">Goodreads</h1>
       <div class="arch-bg nav-bar">
@@ -100,25 +95,19 @@
       <section id="hero">
         <p class="h">Stay motivated.</p>
         <p class="sb">
-          Join our 2026 reading challenge. Start of the new year on the the
-          right foot.
+          Join our 2026 reading challenge. Start off the new year on the right
+          foot and grow your book shelf!
         </p>
         <div class="btns">
-          <button class="primary">cta</button>
-          <button class="secondary">see more</button>
+          <button class="primary">Sign Up</button>
+          <button class="secondary">Learn More</button>
         </div>
       </section>
       <div id="modules">
         <section class="shelf" id="prev-read">
           <div class="arch-bg">
-            <a
-              href="#"
-              aria-label="previously read books shelf"
-              class="icon-bg"
-            >
-              <svg fill="currentColor" viewBox="0 0 1920 1920">
-                <use href="#eye"></use>
-              </svg>
+            <a href="#" aria-label="previously read books shelf"
+              ><img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>Books you read in <span class="year">2026</span>.</h2>
           </div>
@@ -127,10 +116,8 @@
         </section>
         <section class="shelf" id="curr-reading">
           <div class="arch-bg">
-            <a href="#" aria-label="curently reading shelf" class="icon-bg">
-              <svg fill="currentColor" viewBox="0 0 1920 1920">
-                <use href="#eye"></use>
-              </svg>
+            <a href="#" aria-label="currently reading book shelf"
+              ><img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>What are you reading today?</h2>
           </div>
@@ -138,18 +125,21 @@
           <div class="border"></div>
         </section>
         <section id="qt">
-          <blockquote></blockquote>
+          <img class="q" src="images/l-q.svg" alt="" />
+          <blockquote>
+            A reader lives a thousand lives before they die.
+          </blockquote>
           <div class="btns">
             <button class="secondary">Meet the Author</button>
-            <button class="tertiary">author name</button>
+            <button class="tertiary">George R.R. Martin</button>
           </div>
+          <img src="images/george.png" alt="" />
+          <img class="q" src="images/r-q.svg" alt="" />
         </section>
         <section class="shelf" id="discover">
           <div class="arch-bg">
             <a href="#" aria-label="discover books" class="icon-bg">
-              <svg fill="currentColor" viewBox="0 0 1920 1920">
-                <use href="#eye"></use>
-              </svg>
+              <img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>Because you liked <span class="similar-books"></span>.</h2>
           </div>
@@ -159,9 +149,7 @@
         <section class="shelf" id="community">
           <div class="arch-bg">
             <a href="#" aria-label="community reads" class="icon-bg">
-              <svg fill="currentColor" viewBox="0 0 1920 1920">
-                <use href="#eye"></use>
-              </svg>
+              <img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>What the community is reading.</h2>
           </div>
@@ -171,9 +159,7 @@
         <section class="news">
           <div class="arch-bg">
             <a href="#" aria-label="news and stories" class="icon-bg">
-              <svg fill="currentColor" viewBox="0 0 1920 1920">
-                <use href="#eye"></use>
-              </svg>
+              <img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>News and stories we love.</h2>
           </div>
@@ -578,5 +564,6 @@
         </a>
       </section>
     </footer>
+    <script src="home.js" async></script>
   </body>
 </html>
