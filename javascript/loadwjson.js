@@ -301,8 +301,8 @@ function initCommunityRead(books) {
   let unusedBooks = books.filter((book) => !book.used);
   let communityReadingInitArr = [];
 
-  // pick up to 3 books
-  for (let i = 0; i < Math.min(3, unusedBooks.length); i++) {
+  // pick 5 books
+  for (let i = 0; i < 5; i++) {
     let book = unusedBooks[i];
     communityReadingInitArr.push({
       id: book.id,

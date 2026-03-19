@@ -388,3 +388,12 @@ img.q {
   width: 80px;
 }
 /* - - -  ----------- quote end  ------------ - - - - - - - */
+/* - - - - - - --------- books ----------- - - - - -  */
+div.book {
+  display: inline;
+}
+
+img.book-img {
+  height: 200px;
+}
+/* - - -  ----------- quote end  ------------ - - - - - - - */
