@@ -35,9 +35,15 @@ async function initBookLists() {
 
   //4 get community read info + users
   await renderCommunityRead(data.books);
+  // WORKS console.log("communityRead inside initBook..");
+  // console.log(communityRead);
 }
 
-initBookLists();
+// initBookLists();
+// console.log("initialized booklists...");
+// console.log(bookLists);
+// console.log("communityRead AFTER INIT");
+// console.log(communityRead);
 
 function loadSessionStorageBooks() {
   //attempt to load curr read, prev read, suggestedBooks
@@ -95,53 +101,54 @@ function markUsed(books, bookList) {
 }
 
 //--populate 5 books into previously read--
+//{ id: #, dateRead: ##-##-####, myRating: #.# }
 function renderPrevRead(books) {
-  let count = 0;
   let prevRead = [];
-  while (count < 5) {
-    let bookID = Math.floor(Math.random() * 27) + 1;
-    //loop through books obj array to find matching book
-    for (const book of books) {
-      if (book.id === bookID) {
-        if (!book.used) {
-          prevRead.push({ id: book.id, dateRead: null, myRating: null });
-          count++;
-          book.used = true;
-        }
-      }
-    }
-  }
-  //--add info into temp prev read obj array--
-  for (const book of prevRead) {
-    book.dateRead = `2025-${Math.floor(Math.random() * 11) + 1}-${
-      Math.floor(Math.random() * 29) + 1
-    }`;
-    book.myRating = (Math.random() * 5).toFixed(1);
+
+  // Only consider unused books
+  let unusedBooks = books.filter((book) => !book.used);
+
+  let count = 5;
+
+  for (let i = 0; i < count; i++) {
+    // pick random index
+    let randomIndex = Math.floor(Math.random() * unusedBooks.length);
+
+    // remove book from unusedBooks to prevent duplicates
+    let book = unusedBooks.splice(randomIndex, 1)[0];
+
+    prevRead.push({
+      id: book.id,
+      dateRead: `2025-${Math.floor(Math.random() * 12) + 1}-${
+        Math.floor(Math.random() * 28) + 1
+      }`,
+      myRating: (Math.random() * 5).toFixed(1),
+    });
+
+    // mark as used in original array
+    book.used = true;
   }
 
   return prevRead;
 }
-
 // --populate 2 books into currently reading--
 function renderCurrReading(books) {
   let currReading = [];
-  let count = 0;
-  while (count < 2) {
-    let bookID = Math.floor(Math.random() * 27) + 1;
 
-    //ensure random selection is unused
-    for (const book of books) {
-      if (bookID === book.id) {
-        if (book.used === false) {
-          currReading.push({
-            id: book.id,
-            pagesRead: Math.floor(Math.random() * book.pages) + 1,
-          });
-        }
+  // Filter only unused books first
+  let unusedBooks = books.filter((book) => !book.used);
 
-        count++;
-      }
-    }
+  let count = 2;
+
+  while (currReading.length < count) {
+    // pick a random index from unusedBooks
+    let randomIndex = Math.floor(Math.random() * unusedBooks.length);
+    let book = unusedBooks.splice(randomIndex, 1)[0]; // remove it to avoid duplicates
+
+    currReading.push({
+      id: book.id,
+      pagesRead: Math.floor(Math.random() * book.pages) + 1,
+    });
   }
 
   return currReading;
@@ -152,12 +159,14 @@ function renderCurrReading(books) {
 //suggestedInfo.similarToBook = the book ID
 //suggestedInfo.suggested = array of 2 suggestedBooks
 function renderSuggested(books) {
+  console.log("entering renderSuggested");
   let suggestedBooks = [];
-  let count = 0;
+  let suggestionsFound = false;
   let usedList = getUsed(books);
+  const unusedBooks = books.filter((book) => !book.used);
   let usedID;
 
-  while (count < 2) {
+  while (!suggestionsFound) {
     //get random book from usedList
     let randomUsedIndex = Math.floor(Math.random() * usedList.length) + 1;
     //get the id to look up genre in og books arr
@@ -171,7 +180,8 @@ function renderSuggested(books) {
     }
 
     //attempt to find 2 unused books with the same genre arrays
-    for (const book of books) {
+    let count = 0;
+    for (const book of unusedBooks) {
       let genresArr = book.genre;
       if (
         Array.isArray(genresArr) &&
@@ -179,11 +189,18 @@ function renderSuggested(books) {
         genresArr.length === usedGenresArr.length &&
         usedGenresArr.every((genre) => genresArr.includes(genre))
       ) {
-        suggestedBooks.push(book.id);
+        suggestedBooks.push({ id: book.id });
         count++;
+      }
+
+      if (count == 2) {
+        suggestionsFound = true;
+        break;
       }
     }
   }
+  console.log("creating suggestedBooks");
+  console.log(suggestedBooks);
 
   let suggestionInfo = { similarToBook: usedID, suggested: suggestedBooks };
 
@@ -226,6 +243,8 @@ async function renderCommunityRead(books) {
   }
 
   communityRead = communityReadArr;
+  // WORKS console.log("communityRead inside renderCommunityRead..");
+  // console.log(communityRead);
 }
 
 // function getRandomUser(users) {
@@ -299,11 +318,73 @@ function initCommunityRead(books) {
 // grab the doc nodes you need
 //populate prev read, curr read, reccom, comm read
 
-const UIprevReadShelf = document.querySelector("#prev-read section.books");
-const UIcurrReadShelf = document.querySelector("#curr-read section.books");
-const UIsuggestedShelf = document.querySelector("#suggested section.books");
-const UIcommunityRead = document.querySelector("#community section.books");
+const UIprevReadShelf = document.querySelector("#prev-read div.books");
+const UIcurrReadShelf = document.querySelector("#curr-read div.books");
+const UIsuggestedShelf = document.querySelector("#suggested div.books");
+const UIcommunityRead = document.querySelector("#community div.books");
 
-// function renderShelfUI(bookList, shelfElement){
+async function renderUI() {
+  await initBookLists();
 
-// }
+  console.log("init done, bookLists..");
+  console.log(bookLists);
+  renderShelvesUI();
+}
+
+renderUI();
+
+//include below in (dataset)
+//prevRead { id: #, dateRead: ##-##-####, myRating: #.# }
+//currReading {id: #, pagesRead: ###}
+//suggestedInfo {similarToBook: id, suggested: [id, id]}
+//communityRead {id: #, username: abc, rating: #}
+function renderShelvesUI() {
+  renderShelfUI(bookLists.prevRead, UIprevReadShelf, "prevRead");
+  renderShelfUI(bookLists.currReading, UIcurrReadShelf, "currReading");
+  renderShelfUI(
+    bookLists.suggestedInfo.suggested,
+    UIsuggestedShelf,
+    "suggestedBooks"
+  );
+  renderShelfUI(communityRead, UIcommunityRead, "communityRead");
+}
+
+function renderShelfUI(bookList, shelfElement, shelfType) {
+  // console.log("inside renderShelfUI");
+  // console.log(bookList);
+  shelfElement.innerHTML = "";
+
+  bookList.forEach((book) => {
+    const bookDiv = document.createElement("div");
+    bookDiv.classList.add("book");
+
+    //display book images for all
+    bookDiv.innerHTML = `<img class='book-img' src='storage/b${book.id}.jpg' alt='book img'>`;
+
+    //attach data based on type
+    switch (shelfType) {
+      case "prevRead":
+        bookDiv.dataset.id = book.id;
+        bookDiv.dataset.dateRead = book.dateRead;
+        bookDiv.dataset.myRating = book.myRating;
+        break;
+
+      case "currReading":
+        bookDiv.dataset.id = book.id;
+        bookDiv.dataset.pagesRead = book.pagesRead;
+        break;
+
+      case "communityRead":
+        bookDiv.dataset.id = book.id;
+        break;
+
+      case "suggestedBooks":
+        console.log("suggested books id");
+        console.log(book.id);
+        bookDiv.dataset.id = book.id;
+        break;
+    }
+
+    shelfElement.appendChild(bookDiv);
+  });
+}
