@@ -1,49 +1,51 @@
 "use strict";
 
-console.log("script loaded");
+let bookLists;
+let communityReading;
 
-const initializeBookData = () => {
-  //attempt to load curr read, prev read, suggestedBooks
-  let bookData = JSON.parse(sessionStorage.getItem("bookData"));
-  const currReading = JSON.parse(sessionStorage.getItem("currReading")) || [];
-  const prevRead = JSON.parse(sessionStorage.getItem("prevRead")) || [];
-  const suggestedBooks =
-    JSON.parse(sessionStorage.getItem("recommended")) || [];
-
-  return { currReading, prevRead, suggestedBooks };
-};
-
-let { currReading, prevRead, suggestedBooks } = initializeBookData();
-let books = [];
-
-//check to see if items existed in local storage, if not, create lists
-const getBooks = async () => {
-  if (
-    currReading.length === 0 ||
-    prevRead.length === 0 ||
-    suggestedBooks.length === 0
-  ) {
-    try {
-      //load unsuccessful
-      //create copy of books.json
-      const response = await fetch(
-        "https://ashleyshanks.github.io/goodreads/books.json"
-      );
-      books = await response.json();
-      // instead of returning, call functions that use books
-      console.log("calling renderBookLists");
-      renderBookLists(books);
-    } catch (exception) {
-      console.log(exception);
-    }
-  } else {
-    //load successful
-    //load copy of book obj array
-    return JSON.parse(localStorage.getItem("books"));
+const loadJsonBooks = async () => {
+  try {
+    //load unsuccessful
+    //create copy of books.json
+    const response = await fetch(
+      "https://ashleyshanks.github.io/goodreads/books.json"
+    );
+    const books = await response.json();
+    return books;
+  } catch (exception) {
+    console.log(exception);
+    return [];
   }
 };
 
-getBooks();
+//check to see if items existed in local storage, if not, create lists
+async function initBookLists() {
+  //1 try load from session storage loadSessionStorageBooks()
+  let data = loadSessionStorageBooks();
+
+  //2 if no data exists in session storage, use loadJsonBooks(); to get initial book list
+  if (!data.books.length) {
+    const books = await loadJsonBooks();
+
+    //3 THEN, call renderBookLists with the json data to create bookLists
+    data = renderBookLists(books);
+  }
+
+  bookLists = data;
+}
+
+initBookLists();
+
+function loadSessionStorageBooks() {
+  //attempt to load curr read, prev read, suggestedBooks
+  let bookData = JSON.parse(sessionStorage.getItem("bookData"));
+  const books = bookData?.books || [];
+  const currReading = bookData?.currReading || [];
+  const prevRead = bookData?.prevRead || [];
+  const suggestedInfo = bookData?.suggestedInfo || [];
+
+  return { books, currReading, prevRead, suggestedInfo };
+}
 
 function renderBookLists(books) {
   markUnused(books);
@@ -56,6 +58,7 @@ function renderBookLists(books) {
   markUsed(books, suggestedBooks);
 
   saveData({ books, prevRead, currReading, suggestedInfo });
+  return { books, prevRead, currReading, suggestedInfo };
 }
 
 function getUsed(books) {
@@ -66,9 +69,6 @@ function getUsed(books) {
       usedList.push(book.id);
     }
   }
-
-  console.log("used list is");
-  console.log(usedList);
 
   return usedList;
 }
@@ -91,10 +91,10 @@ function markUsed(books, bookList) {
   }
 }
 
-//--populate five books into previously read--
+//--populate 5 books into previously read--
 function renderPrevRead(books) {
   let count = 0;
-  prevRead = [];
+  let prevRead = [];
   while (count < 5) {
     let bookID = Math.floor(Math.random() * 27) + 1;
     //loop through books obj array to find matching book
@@ -141,13 +141,13 @@ function renderCurrReading(books) {
     }
   }
 
-  // console.log("currReading is...");
-  // console.log(currReading);
-
   return currReading;
 }
 
 //--populate 2 books into suggestedBooks--
+//returns suggestedInfo. the book suggestions are based on + book suggestions
+//suggestedInfo.similarToBook = the book ID
+//suggestedInfo.suggested = array of 2 suggestedBooks
 function renderSuggested(books) {
   let suggestedBooks = [];
   let count = 0;
@@ -171,6 +171,8 @@ function renderSuggested(books) {
     for (const book of books) {
       let genresArr = book.genre;
       if (
+        Array.isArray(genresArr) &&
+        Array.isArray(usedGenresArr) &&
         genresArr.length === usedGenresArr.length &&
         usedGenresArr.every((genre) => genresArr.includes(genre))
       ) {
@@ -186,27 +188,41 @@ function renderSuggested(books) {
 }
 
 //save curr read, prev, recommended, and book obj array copy
-//make sure this save only lasts until site is closed
 function saveData(data) {
-  sessionStorage.setItem("bookListData", JSON.stringify(data));
+  try {
+    console.log("attempting save", data);
+    sessionStorage.setItem("bookData", JSON.stringify(data));
+    console.log("saveData successful");
+  } catch (err) {
+    console.error("saveData failed", err);
+  }
 }
 
-//attempt to load data from session storage
-//if the data does not exist, do getBooks() should be able to get rid of the
-//if statement inside getBooks() and instead rely on if data exists, set variables, if not
-//do getBooks
+//3 books for community reading (NOT SAVED)
+function renderCommunityReadBooks(books) {
+  let count = 0;
+  let randomID = Math.floor(Math.random() * books.length) + 1;
+  communityReadingArr = [];
 
-//end primary functions, below will not be saved
+  while (count < 3) {
+    for (const book of books) {
+      if (!book.used) {
+        communityReading.push({
+          id: book.id,
+          username: getRandomUser(),
+          rating: Math.floor(Math.random() * 5) + 1,
+        });
+      }
+    }
+  }
 
-//--populate 3 books into what community is reading--
-//start 0 count
-//loop through book obj arr until count is 3
-//get random number 1-27
-//check to see if book w random number id is used
-//if not used, add to comm read array
-//mark as used
-//add to count
+  return communityReadingArr;
+}
 
 //populate html
 // grab the doc nodes you need
 //populate prev read, curr read, reccom, comm read
+
+const UIprevReadShelf = document.querySelector("#prev-read section.books");
+const UIcurrReadShelf = document.querySelector("#curr-read section.books");
+const UIsuggestedShelf = document.querySelector("#suggested section.books");
