@@ -1,12 +1,12 @@
 "use strict";
 
 let bookLists;
-let communityReading;
+let communityRead;
+
+console.log("script loaded");
 
 const loadJsonBooks = async () => {
   try {
-    //load unsuccessful
-    //create copy of books.json
     const response = await fetch(
       "https://ashleyshanks.github.io/goodreads/books.json"
     );
@@ -32,6 +32,9 @@ async function initBookLists() {
   }
 
   bookLists = data;
+
+  //4 get community read info + users
+  await renderCommunityRead(data.books);
 }
 
 initBookLists();
@@ -198,25 +201,98 @@ function saveData(data) {
   }
 }
 
-//3 books for community reading (NOT SAVED)
-function renderCommunityReadBooks(books) {
-  let count = 0;
-  let randomID = Math.floor(Math.random() * books.length) + 1;
-  communityReadingArr = [];
+//----------community reading and users---------------------
+async function fetchUsers() {
+  try {
+    const response = await fetch(
+      "https://ashleyshanks.github.io/goodreads/users.json"
+    );
+    const users = await response.json();
+    return users;
+  } catch (exception) {
+    console.log(exception);
+    return [];
+  }
+}
 
-  while (count < 3) {
-    for (const book of books) {
-      if (!book.used) {
-        communityReading.push({
-          id: book.id,
-          username: getRandomUser(),
-          rating: Math.floor(Math.random() * 5) + 1,
-        });
-      }
-    }
+async function renderCommunityRead(books) {
+  let communityReadArr = initCommunityRead(books);
+
+  let users = await fetchUsers();
+
+  for (const entry of communityReadArr) {
+    let username = getRandomUser(users);
+    entry.username = username;
   }
 
-  return communityReadingArr;
+  communityRead = communityReadArr;
+}
+
+// function getRandomUser(users) {
+//   let randomUsername;
+//   let userFound = false;
+
+//   while (!userFound) {
+//     let randomIndex = Math.floor(Math.random() * users.length);
+
+//     let user = users[randomIndex];
+
+//     if (!user.used) {
+//       randomUsername = user.username;
+//       userFound = true;
+//     }
+//   }
+
+//   return randomUsername;
+// }
+function getRandomUser(users) {
+  let unusedUsers = users.filter((user) => !user.used);
+  if (unusedUsers.length === 0) return null; // nothing available
+
+  let randomIndex = Math.floor(Math.random() * unusedUsers.length);
+  return unusedUsers[randomIndex].username;
+}
+//3 books for community reading (NOT SAVED)
+// function initCommunityRead(books) {
+//   let count = 0;
+//   let randomID = Math.floor(Math.random() * books.length) + 1;
+//   let communityReadingInitArr = [];
+
+//   try {
+//     while (count < 3) {
+//       for (const book of books) {
+//         if (!book.used) {
+//           communityReadingInitArr.push({
+//             id: book.id,
+//             username: null,
+//             rating: Math.floor(Math.random() * 5) + 1,
+//           });
+
+//           count++;
+//         }
+//       }
+//     }
+//   } catch (exception) {
+//     console.log(exception);
+//   }
+
+//   return communityReadingInitArr;
+// }
+function initCommunityRead(books) {
+  let unusedBooks = books.filter((book) => !book.used);
+  let communityReadingInitArr = [];
+
+  // pick up to 3 books
+  for (let i = 0; i < Math.min(3, unusedBooks.length); i++) {
+    let book = unusedBooks[i];
+    communityReadingInitArr.push({
+      id: book.id,
+      username: null,
+      rating: Math.floor(Math.random() * 5) + 1,
+    });
+  }
+
+  return communityReadingInitArr;
 }
 
 //populate html
@@ -226,3 +302,8 @@ function renderCommunityReadBooks(books) {
 const UIprevReadShelf = document.querySelector("#prev-read section.books");
 const UIcurrReadShelf = document.querySelector("#curr-read section.books");
 const UIsuggestedShelf = document.querySelector("#suggested section.books");
+const UIcommunityRead = document.querySelector("#community section.books");
+
+// function renderShelfUI(bookList, shelfElement){
+
+// }
