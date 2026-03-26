@@ -108,7 +108,7 @@ function renderPrevRead(books) {
   // Only consider unused books
   let unusedBooks = books.filter((book) => !book.used);
 
-  let count = 5;
+  let count = 3;
 
   for (let i = 0; i < count; i++) {
     // pick random index
@@ -168,7 +168,7 @@ function renderSuggested(books) {
 
   while (!suggestionsFound) {
     //get random book from usedList
-    let randomUsedIndex = Math.floor(Math.random() * usedList.length) + 1;
+    let randomUsedIndex = Math.floor(Math.random() * usedList.length);
     //get the id to look up genre in og books arr
     usedID = usedList[randomUsedIndex];
     //grab the genre list from the book
@@ -302,7 +302,7 @@ function initCommunityRead(books) {
   let communityReadingInitArr = [];
 
   // pick 5 books
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
     let book = unusedBooks[i];
     communityReadingInitArr.push({
       id: book.id,

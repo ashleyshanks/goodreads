@@ -106,7 +106,7 @@
       <div id="modules">
         <section class="shelf" id="prev-read">
           <div class="arch-bg">
-            <a href="#" aria-label="previously read books shelf"
+            <a href="#" class="eye" aria-label="previously read books shelf"
               ><img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>Books you read in <span class="year">2026</span>.</h2>
@@ -114,9 +114,9 @@
           <div class="books"></div>
           <div class="border"></div>
         </section>
-        <section class="shelf" id="curr-read">
+        <section class="shelf short" id="curr-read">
           <div class="arch-bg">
-            <a href="#" aria-label="currently reading book shelf"
+            <a class="eye" href="#" aria-label="currently reading book shelf"
               ><img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>What are you reading today?</h2>
@@ -127,18 +127,19 @@
         <section id="qt">
           <img class="q" src="images/l-q.svg" alt="" />
           <blockquote>
-            A reader lives a thousand lives before they die.
+            A reader lives a thousand<br />
+            lives before they die.
           </blockquote>
           <div class="btns">
             <button class="secondary">Meet the Author</button>
             <button class="tertiary">George R.R. Martin</button>
           </div>
-          <img src="images/george.png" alt="" />
+          <img class="author" src="images/george.png" alt="" />
           <img class="q" src="images/r-q.svg" alt="" />
         </section>
-        <section class="shelf" id="suggested">
+        <section class="shelf short" id="suggested">
           <div class="arch-bg">
-            <a href="#" aria-label="discover books" class="icon-bg">
+            <a class="eye" href="#" aria-label="discover books" class="icon-bg">
               <img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>Because you liked <span class="similar-books"></span>.</h2>
@@ -148,7 +149,12 @@
         </section>
         <section class="shelf" id="community">
           <div class="arch-bg">
-            <a href="#" aria-label="community reads" class="icon-bg">
+            <a
+              href="#"
+              class="eye"
+              aria-label="community reads"
+              class="icon-bg"
+            >
               <img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>What the community is reading.</h2>
@@ -156,16 +162,30 @@
           <div class="books"></div>
           <div class="border"></div>
         </section>
-        <section class="news">
+        <section class="news short">
           <div class="arch-bg">
-            <a href="#" aria-label="news and stories" class="icon-bg">
+            <a
+              href="#"
+              class="eye"
+              aria-label="news and stories"
+              class="icon-bg"
+            >
               <img class="eye" src="images/eye icon.svg" alt="" />
             </a>
             <h2>News and stories we love.</h2>
           </div>
-          <div class="banner"></div>
-          <div class="article-title"></div>
-          <div class="article-likes"></div>
+          <div class="overlay">
+            <div class="banner">
+              <img
+                src="https://images.gr-assets.com/blogs/1771612745p8/3078.jpg"
+                alt=""
+              />
+            </div>
+            <div class="article-title">
+              <a href="#">Readers’ 79 Most Anticipated Spring Books</a>
+            </div>
+            <div class="article-likes"><span>368 likes</span></div>
+          </div>
           <div class="border"></div>
         </section>
       </div>
@@ -564,7 +584,7 @@
         </a>
       </section>
     </footer>
-    <script src="javascript/loadwjson.js" async></script>
+    <script src="javascript/home.js" async></script>
     <!-- <script src="javascript/test.js" defer></script> -->
   </body>
 </html>
