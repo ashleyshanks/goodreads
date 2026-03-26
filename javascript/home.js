@@ -333,11 +333,6 @@ async function renderUI() {
 
 renderUI();
 
-//include below in (dataset)
-//prevRead { id: #, dateRead: ##-##-####, myRating: #.# }
-//currReading {id: #, pagesRead: ###}
-//suggestedInfo {similarToBook: id, suggested: [id, id]}
-//communityRead {id: #, username: abc, rating: #}
 function renderShelvesUI() {
   renderShelfUI(bookLists.prevRead, UIprevReadShelf, "prevRead");
   renderShelfUI(bookLists.currReading, UIcurrReadShelf, "currReading");
@@ -364,7 +359,25 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
     const progressBar = `<div class='progressbar'>
             <div class='progressbar-bg'></div>
             <div class='progress'></div>
+            <div class='star'>★</div>
         </div>`;
+
+    const ratingUI = `<div class='star-rating'>
+                        <div class='rating'></div>
+                        <div class='rating-bg'>★★★★★</div>
+                      </div>`;
+
+    const userInfoUI = `<div class='user-info'>
+                            <a href='#' class='icon-bg profile'><img src='' alt='user'></a>
+                            <a href='#' class='profile-name'></a>
+                            ${ratingUI}
+                        </div>`;
+
+    const ratingInfoUI = `<div class='rating-info'>
+                            <span class ='rating-number'></span>
+                            ${ratingUI}
+                            <span class='rating-count'></span>
+                          </div>`;
 
     //attach data based on type
     switch (shelfType) {
@@ -382,22 +395,23 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
         break;
 
       case "communityRead":
+        bookDiv.innerHTML += userInfoUI;
         bookDiv.dataset.id = book.id;
         break;
 
       case "suggestedBooks":
-        console.log("suggested books id");
-        console.log(book.id);
+        bookDiv.innerHTML += ratingInfoUI;
         bookDiv.dataset.id = book.id;
         break;
     }
 
     shelfElement.appendChild(bookDiv);
-    renderProgressUI();
+    renderBookDetails();
   });
 }
 
-function renderProgressUI() {
+function renderBookDetails() {
+  renderBookRating();
   renderPrevReadProgress();
   renderCurrReadingProgress();
 }
@@ -407,10 +421,19 @@ function renderPrevReadProgress() {
 
   prevReadBooks.forEach((book) => {
     const progressBar = book.querySelector(".progress");
+    const percentRead = 100;
     if (progressBar) {
       setTimeout(() => {
-        progressBar.style.width = "100%";
+        progressBar.style.width = `${percentRead}%`;
       }, 50);
+
+      const star = book.querySelector(".star");
+
+      if (percentRead >= 100 && star) {
+        setTimeout(() => {
+          star.style.opacity = 1;
+        }, 1100);
+      }
     }
   });
 }
@@ -420,17 +443,57 @@ function renderCurrReadingProgress() {
 
   currReadingBooks.forEach((book) => {
     const progressBar = book.querySelector(".progress");
-    //fix me, not sure if bookID is saved as a number or string ?
     const bookID = book.dataset.id;
     const pagesRead = Number(book.dataset.pagesRead);
 
     const fullBook = bookLists.books.find((book) => book.id == bookID);
 
     if (progressBar && fullBook && fullBook.pages) {
-      const percentRead = Math.floor((pagesRead / fullBook.pages) * 100);
+      const percentRead = Math.max(
+        Math.floor((pagesRead / fullBook.pages) * 100),
+        10
+      );
+
       setTimeout(() => {
         progressBar.style.width = `${percentRead}%`;
       }, 50);
+
+      const star = book.querySelector(".star");
+
+      if (percentRead >= 100 && star) {
+        setTimeout(() => {
+          star.style.opacity = 1;
+        }, 1100);
+      }
     }
   });
+}
+
+function renderBookRating() {
+  const suggestedBooks = UIsuggestedShelf.querySelectorAll(".book");
+
+  suggestedBooks.forEach((book) => {
+    const ratingNumberUI = book.querySelector(".rating-number");
+    const ratingCountUI = book.querySelector(".rating-count");
+    const ratingUI = book.querySelector(".rating");
+
+    const bookID = book.dataset.id;
+    const sourceBook = bookLists.books.find((book) => book.id == bookID);
+
+    if (sourceBook && ratingNumberUI && ratingCountUI && ratingUI) {
+      const ratingNumber = sourceBook.rating;
+      const ratingCount = sourceBook.ratingCount;
+
+      ratingNumberUI.textContent = ratingNumber;
+      ratingCountUI.textContent = ratingCount;
+      ratingUI.textContent = renderStars(ratingNumber);
+    }
+  });
+}
+
+function renderUserInfo() {}
+
+function renderStars(rating) {
+  const count = Math.round(rating);
+  return "★".repeat(count);
 }
