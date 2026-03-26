@@ -35,15 +35,7 @@ async function initBookLists() {
 
   //4 get community read info + users
   await renderCommunityRead(data.books);
-  // WORKS console.log("communityRead inside initBook..");
-  // console.log(communityRead);
 }
-
-// initBookLists();
-// console.log("initialized booklists...");
-// console.log(bookLists);
-// console.log("communityRead AFTER INIT");
-// console.log(communityRead);
 
 function loadSessionStorageBooks() {
   //attempt to load curr read, prev read, suggestedBooks
@@ -243,27 +235,8 @@ async function renderCommunityRead(books) {
   }
 
   communityRead = communityReadArr;
-  // WORKS console.log("communityRead inside renderCommunityRead..");
-  // console.log(communityRead);
 }
 
-// function getRandomUser(users) {
-//   let randomUsername;
-//   let userFound = false;
-
-//   while (!userFound) {
-//     let randomIndex = Math.floor(Math.random() * users.length);
-
-//     let user = users[randomIndex];
-
-//     if (!user.used) {
-//       randomUsername = user.username;
-//       userFound = true;
-//     }
-//   }
-
-//   return randomUsername;
-// }
 function getRandomUser(users) {
   let unusedUsers = users.filter((user) => !user.used);
   if (unusedUsers.length === 0) return null; // nothing available
@@ -271,32 +244,7 @@ function getRandomUser(users) {
   let randomIndex = Math.floor(Math.random() * unusedUsers.length);
   return unusedUsers[randomIndex].username;
 }
-//3 books for community reading (NOT SAVED)
-// function initCommunityRead(books) {
-//   let count = 0;
-//   let randomID = Math.floor(Math.random() * books.length) + 1;
-//   let communityReadingInitArr = [];
 
-//   try {
-//     while (count < 3) {
-//       for (const book of books) {
-//         if (!book.used) {
-//           communityReadingInitArr.push({
-//             id: book.id,
-//             username: null,
-//             rating: Math.floor(Math.random() * 5) + 1,
-//           });
-
-//           count++;
-//         }
-//       }
-//     }
-//   } catch (exception) {
-//     console.log(exception);
-//   }
-
-//   return communityReadingInitArr;
-// }
 function initCommunityRead(books) {
   let unusedBooks = books.filter((book) => !book.used);
   let communityReadingInitArr = [];
@@ -313,10 +261,6 @@ function initCommunityRead(books) {
 
   return communityReadingInitArr;
 }
-
-//populate html
-// grab the doc nodes you need
-//populate prev read, curr read, reccom, comm read
 
 const UIprevReadShelf = document.querySelector("#prev-read div.books");
 const UIcurrReadShelf = document.querySelector("#curr-read div.books");
@@ -369,7 +313,7 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
 
     const userInfoUI = `<div class='user-info'>
                             <a href='#' class='icon-bg profile'><img src='' alt='user'></a>
-                            <a href='#' class='profile-name'></a>
+                            <a href='#' class='username'></a>
                             ${ratingUI}
                         </div>`;
 
@@ -397,6 +341,8 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
       case "communityRead":
         bookDiv.innerHTML += userInfoUI;
         bookDiv.dataset.id = book.id;
+        bookDiv.dataset.username = book.username;
+        bookDiv.dataset.userRating = book.rating;
         break;
 
       case "suggestedBooks":
@@ -412,6 +358,7 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
 
 function renderBookDetails() {
   renderBookRating();
+  renderUserInfo();
   renderPrevReadProgress();
   renderCurrReadingProgress();
 }
@@ -491,7 +438,27 @@ function renderBookRating() {
   });
 }
 
-function renderUserInfo() {}
+async function renderUserInfo() {
+  const communityReadBooks = UIcommunityRead.querySelectorAll(".book");
+  let users = await fetchUsers();
+
+  communityReadBooks.forEach((book) => {
+    const profilePic = book.querySelector(".profile img");
+    const usernameUI = book.querySelector(".username");
+    const ratingUI = book.querySelector(".rating");
+
+    const userRating = book.dataset.userRating;
+    const username = book.dataset.username;
+    const user = users.find((user) => user.username == username);
+    const userImg = user.img;
+
+    if (profilePic && usernameUI && ratingUI) {
+      profilePic.src = `storage/${userImg}.jpg`;
+      usernameUI.textContent = username;
+      ratingUI.textContent = renderStars(userRating);
+    }
+  });
+}
 
 function renderStars(rating) {
   const count = Math.round(rating);
