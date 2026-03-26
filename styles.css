@@ -139,6 +139,8 @@ button {
   --opaque-bg: #38291e17;
   --lt-green: #bfc8a3;
   --dk-green: #37421c;
+
+  --progress-bar-height: 13px;
 }
 
 /* - - - - - - ----------- ROOT END ------------- - - - - -  
@@ -276,7 +278,7 @@ body {
   display: grid;
   margin-top: 0.6em;
   width: 100%;
-  height: 15px;
+  height: var(--progress-bar-height);
 }
 
 .progressbar-bg,
@@ -303,12 +305,12 @@ body {
 
 .star {
   z-index: 3;
-  font-size: 11px;
+  font-size: calc(var(--progress-bar-height) * 0.6);
   color: var(--lt-color);
   text-align: right;
   opacity: 0;
-  margin-top: 3px;
-  margin-right: 3px;
+  margin: calc(var(--progress-bar-height) * 0.233333)
+    calc(var(--progress-bar-height) * 0.233333) 0 0;
   transition: opacity 1s ease;
 }
 

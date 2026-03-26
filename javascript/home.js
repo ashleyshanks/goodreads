@@ -442,6 +442,10 @@ async function renderUserInfo() {
   const communityReadBooks = UIcommunityRead.querySelectorAll(".book");
   let users = await fetchUsers();
 
+  users.forEach((user) => {
+    console.log(`${user.username} ${user.img}`);
+  });
+
   communityReadBooks.forEach((book) => {
     const profilePic = book.querySelector(".profile img");
     const usernameUI = book.querySelector(".username");
