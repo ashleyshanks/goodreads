@@ -361,15 +361,22 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
     //display book images for all
     bookDiv.innerHTML = `<img class='book-img' src='storage/b${book.id}.jpg' alt='book img'>`;
 
+    const progressBar = `<div class='progressbar'>
+            <div class='progressbar-bg'></div>
+            <div class='progress'></div>
+        </div>`;
+
     //attach data based on type
     switch (shelfType) {
       case "prevRead":
+        bookDiv.innerHTML += progressBar;
         bookDiv.dataset.id = book.id;
         bookDiv.dataset.dateRead = book.dateRead;
         bookDiv.dataset.myRating = book.myRating;
         break;
 
       case "currReading":
+        bookDiv.innerHTML += progressBar;
         bookDiv.dataset.id = book.id;
         bookDiv.dataset.pagesRead = book.pagesRead;
         break;
@@ -386,5 +393,44 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
     }
 
     shelfElement.appendChild(bookDiv);
+    renderProgressUI();
+  });
+}
+
+function renderProgressUI() {
+  renderPrevReadProgress();
+  renderCurrReadingProgress();
+}
+
+function renderPrevReadProgress() {
+  const prevReadBooks = UIprevReadShelf.querySelectorAll(".book");
+
+  prevReadBooks.forEach((book) => {
+    const progressBar = book.querySelector(".progress");
+    if (progressBar) {
+      setTimeout(() => {
+        progressBar.style.width = "100%";
+      }, 50);
+    }
+  });
+}
+
+function renderCurrReadingProgress() {
+  const currReadingBooks = UIcurrReadShelf.querySelectorAll(".book");
+
+  currReadingBooks.forEach((book) => {
+    const progressBar = book.querySelector(".progress");
+    //fix me, not sure if bookID is saved as a number or string ?
+    const bookID = book.dataset.id;
+    const pagesRead = Number(book.dataset.pagesRead);
+
+    const fullBook = bookLists.books.find((book) => book.id == bookID);
+
+    if (progressBar && fullBook && fullBook.pages) {
+      const percentRead = Math.floor((pagesRead / fullBook.pages) * 100);
+      setTimeout(() => {
+        progressBar.style.width = `${percentRead}%`;
+      }, 50);
+    }
   });
 }
