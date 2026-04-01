@@ -442,10 +442,6 @@ async function renderUserInfo() {
   const communityReadBooks = UIcommunityRead.querySelectorAll(".book");
   let users = await fetchUsers();
 
-  users.forEach((user) => {
-    console.log(`${user.username} ${user.img}`);
-  });
-
   communityReadBooks.forEach((book) => {
     const profilePic = book.querySelector(".profile img");
     const usernameUI = book.querySelector(".username");
@@ -468,3 +464,32 @@ function renderStars(rating) {
   const count = Math.round(rating);
   return "★".repeat(count);
 }
+
+const bgWrap = document.querySelector(".body-bg-wrap");
+const bgImg = document.querySelector("img.body-bg-img");
+
+window.addEventListener("scroll", handleBgScroll);
+window.addEventListener("resize", handleBgScroll);
+
+function handleBgScroll() {
+  const scrollY = window.scrollY;
+
+  const beginMovement = 130;
+
+  // if (scrollY > fixImgAt) {
+  //   bgWrap.classList.add("body-bg-wrap-fixed");
+  // } else {
+  //   bgWrap.classList.remove("body-bg-wrap-fixed");
+  // }
+
+  const bgMoveSpeed = 0.15;
+
+  if (scrollY > beginMovement) {
+    const movedAmount = (scrollY - beginMovement) * bgMoveSpeed;
+    bgImg.style.transform = `translateY(-${movedAmount}px)`;
+  } else {
+    bgImg.style.transform = "translateY(0)";
+  }
+}
+
+handleBgScroll();
