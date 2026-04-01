@@ -464,32 +464,43 @@ function renderStars(rating) {
   const count = Math.round(rating);
   return "★".repeat(count);
 }
-
-const bgWrap = document.querySelector(".body-bg-wrap");
 const bgImg = document.querySelector("img.body-bg-img");
+const footer = document.querySelector("footer");
 
 window.addEventListener("scroll", handleBgScroll);
 window.addEventListener("resize", handleBgScroll);
 
 function handleBgScroll() {
   const scrollY = window.scrollY;
-
   const beginMovement = 130;
+  const bgMoveSpeed = 0.17;
 
-  // if (scrollY > fixImgAt) {
-  //   bgWrap.classList.add("body-bg-wrap-fixed");
-  // } else {
-  //   bgWrap.classList.remove("body-bg-wrap-fixed");
-  // }
-
-  const bgMoveSpeed = 0.15;
-
+  let movedAmount = 0;
   if (scrollY > beginMovement) {
-    const movedAmount = (scrollY - beginMovement) * bgMoveSpeed;
+    movedAmount = (scrollY - beginMovement) * bgMoveSpeed;
     bgImg.style.transform = `translateY(-${movedAmount}px)`;
   } else {
     bgImg.style.transform = "translateY(0)";
   }
+
+  // Use body's known height to clip the image
+  const imgRect = bgImg.getBoundingClientRect();
+  const bodyBottom = document.body.getBoundingClientRect().bottom;
+
+  if (imgRect.bottom > bodyBottom) {
+    const clip = imgRect.bottom - bodyBottom;
+    bgImg.style.clipPath = `inset(0 0 ${clip}px 0)`;
+  } else {
+    bgImg.style.clipPath = "none";
+  }
 }
+
+console.log("body height:", document.body.getBoundingClientRect().height);
+console.log("scroll height:", document.body.scrollHeight);
+console.log(
+  "img bottom:",
+  document.querySelector("img.body-bg-img").getBoundingClientRect().bottom +
+    window.scrollY
+);
 
 handleBgScroll();
