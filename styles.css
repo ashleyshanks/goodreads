@@ -887,13 +887,18 @@ small {
     display: block;
   }
 
-  .shelf {
-    width: 100%;
-  }
-
   img.book-img,
   div.book {
-    width: 30vw;
+    width: 28vw;
+  }
+
+  div.book {
+    padding: 1em;
+    padding-right: 0;
+  }
+
+  div.book:last-of-type {
+    padding-right: 1em;
   }
 
   #hero {
@@ -905,8 +910,15 @@ small {
   }
 
   .nav .l button {
-    display: inline-block;
     margin-right: 0.4em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .news .description {
+    display: block;
   }
 
   body > *:not(header):not(footer) {
@@ -915,6 +927,37 @@ small {
 
   footer {
     margin: 2vw 1.5vw;
+  }
+
+  blockquote {
+    font-size: 2.3em;
+    transform: translateX(5vw);
+  }
+
+  img.q {
+    min-width: 3vw;
+    max-width: 3vw;
+  }
+
+  img.author {
+    width: 20vw;
+
+    /* transform: translateX(-1vw); */
+  }
+
+  #qt .btns {
+    transform: translateX(5vw);
+  }
+
+  span.rating-number,
+  span.rating-count,
+  #community .username {
+    font-size: 1.2rem;
+  }
+
+  .rating,
+  .rating-bg {
+    font-size: 1.4rem;
   }
 }
 
