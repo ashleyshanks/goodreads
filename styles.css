@@ -482,6 +482,17 @@ p:not(p.h) {
   grid-row-gap: 2vw;
 }
 
+/*for ellipses*/
+.shelf {
+  box-sizing: border-box;
+  width: auto;
+  min-width: 0;
+}
+.shelf .arch,
+.shelf h2 {
+  min-width: 0;
+}
+
 /*- - -  ----------- nav ------------ - - - - - - - */
 
 .arch.nav {
@@ -518,7 +529,8 @@ nav li {
   margin-right: 1em;
 }
 
-.hide {
+.hide,
+.nav .l button {
   display: none;
 }
 
@@ -534,20 +546,6 @@ nav li {
 }
 
 /* - - - - - - ----------- hero end ------------- - - - - - */
-/* - - - shelves - - - - */
-.shelf.r {
-  box-sizing: border-box;
-}
-.shelf.l {
-  width: 46vw;
-}
-.shelf.r {
-  width: 31vw;
-  /* justify-self: end; */
-}
-.shelf h2 {
-  padding-right: 1em;
-}
 /* - - - - - - --------- quote ----------- - - - - -  */
 
 #qt {
@@ -606,7 +604,7 @@ div.book {
   display: inline-block;
   /* width: 12vw; */
 
-  width: clamp(90px, 13vw, 15vw);
+  width: clamp(120px, 12vw, 15vw);
   aspect-ratio: 2 / 3;
   padding: var(--module-spacing);
 
@@ -626,7 +624,7 @@ div.books {
 }
 
 img.book-img {
-  width: clamp(90px, 13vw, 15vw);
+  width: clamp(120px, 12vw, 15vw);
   aspect-ratio: 2 / 3;
   box-shadow: 0.2em 0.2em 0.5em 0px var(--shadow);
 }
@@ -884,6 +882,42 @@ small {
 }
 
 /**tablet media queries**/
+@media (max-width: 780px) {
+  #modules {
+    display: block;
+  }
+
+  .shelf {
+    width: 100%;
+  }
+
+  img.book-img,
+  div.book {
+    width: 30vw;
+  }
+
+  #hero {
+    width: 100vw;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .nav .l button {
+    display: inline-block;
+    margin-right: 0.4em;
+  }
+
+  body > *:not(header):not(footer) {
+    margin: 0 1.5vw;
+  }
+
+  footer {
+    margin: 2vw 1.5vw;
+  }
+}
+
 @media (max-width: 970px) {
   .news .title {
     font-size: 1rem;
@@ -891,39 +925,16 @@ small {
   .overflow {
     display: none;
   }
+}
 
-  /* width: clamp(47vw, 49vw, 50vw); */
-  /* .shelf.l,
-  #hero {
-    width: 47vw;
-  } */
-
-  .shelf.l,
-  #hero {
-    width: 49vw;
-  }
-
-  .shelf.r {
-    width: calc((49vw * 2 / 3) + var(--module-spacing) * 2);
-  }
-
+@media (max-width: 970px) and (min-width: 780px) {
   body > *:not(header):not(footer) {
     margin: 0 7vw;
   }
 
-  /* header {
-    margin: 2vw 4vw;
-  } */
-
   footer {
     margin: 2vw 7vw;
   }
-
-  /* grid-column-gap: clamp(0.1vw, 0.4vw, 1vw); */
-  /* grid-column-gap: 0.9vw; */
-  /* #modules {
-    grid-column-gap: 0.5vw;
-  } */
 }
 
 /* - - -  ----------- medium desktop media queries------------ - - - - - - - */
