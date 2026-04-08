@@ -151,7 +151,6 @@ function renderCurrReading(books) {
 //suggestedInfo.similarToBook = the book ID
 //suggestedInfo.suggested = array of 2 suggestedBooks
 function renderSuggested(books) {
-  console.log("entering renderSuggested");
   let suggestedBooks = [];
   let suggestionsFound = false;
   let usedList = getUsed(books);
@@ -191,8 +190,6 @@ function renderSuggested(books) {
       }
     }
   }
-  console.log("creating suggestedBooks");
-  console.log(suggestedBooks);
 
   let suggestionInfo = { similarToBook: usedID, suggested: suggestedBooks };
 
@@ -202,9 +199,7 @@ function renderSuggested(books) {
 //save curr read, prev, recommended, and book obj array copy
 function saveData(data) {
   try {
-    console.log("attempting save", data);
     sessionStorage.setItem("bookData", JSON.stringify(data));
-    console.log("saveData successful");
   } catch (err) {
     console.error("saveData failed", err);
   }
@@ -270,8 +265,6 @@ const UIcommunityRead = document.querySelector("#community div.books");
 async function renderUI() {
   await initBookLists();
 
-  console.log("init done, bookLists..");
-  console.log(bookLists);
   renderShelvesUI();
 }
 
@@ -312,7 +305,7 @@ function renderShelfUI(bookList, shelfElement, shelfType) {
                       </div>`;
 
     const userInfoUI = `<div class='user-info'>
-                            <a href='#' class='icon-bg profile'><img src='' alt='user'></a>
+                            <a href='#' class='icon profile'><img src='' alt='user'></a>
                             <a href='#' class='username'></a>
                             ${ratingUI}
                         </div>`;
@@ -494,13 +487,5 @@ function handleBgScroll() {
     bgImg.style.clipPath = "none";
   }
 }
-
-console.log("body height:", document.body.getBoundingClientRect().height);
-console.log("scroll height:", document.body.scrollHeight);
-console.log(
-  "img bottom:",
-  document.querySelector("img.body-bg-img").getBoundingClientRect().bottom +
-    window.scrollY
-);
 
 handleBgScroll();

@@ -228,7 +228,7 @@ body {
 /* - - - - - - ----------- MAIN END ------------- - - - - -  
 - - -  ----------- ICONS ------------ - - - - - - - */
 
-.icon-bg {
+.icon {
   background-color: var(--lt-color);
   width: 35px;
   height: 35px;
@@ -236,46 +236,43 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
-.icon-bg,
-.dk-icon-bg,
-.icon-bg svg,
-.dk-icon-bg svg {
+.icon,
+.icon.dk,
+.icon svg,
+.icon.dk svg {
   transition: all 0.2s ease;
 }
 
-.icon-bg:hover {
+.icon:hover {
   background-color: var(--dk-neutral);
 }
 
-.dk-icon-bg:hover {
+.icon.dk:hover {
   background-color: var(--lt-color);
 }
 
-.icon-bg:hover svg {
+.icon:hover svg {
   color: var(--lt-color);
 }
 
-.dk-icon-bg:hover svg {
+.icon.dk:hover svg {
   color: var(--dk-neutral);
 }
 
-.dk-icon-bg {
+.icon.dk {
   background-color: var(--dk-neutral);
 }
 
-.icon-bg svg {
+.icon svg {
   width: 25px;
   color: var(--dk-neutral);
   fill: none;
 }
 
-img.eye {
-  width: 35px;
-}
-
-.dk-icon-bg svg {
+.icon.dk svg {
   color: var(--lt-color);
 }
 
@@ -311,7 +308,7 @@ img.body-bg-img {
   contain: layout;
 }
 
-.arch-bg,
+.arch,
 .border {
   background: url(images/canvastexture.png), var(--md-neutral);
   display: flex;
@@ -321,7 +318,7 @@ img.body-bg-img {
   z-index: 10;
 }
 
-.arch-bg {
+.arch {
   border-radius: var(--arch-top-r) var(--arch-top-r) var(--arch-bot-r)
     var(--arch-bot-r);
   position: relative;
@@ -500,7 +497,7 @@ p:not(p.h) {
 
 /*- - -  ----------- nav ------------ - - - - - - - */
 
-.nav-bar {
+.arch.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
