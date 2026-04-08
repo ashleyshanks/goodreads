@@ -237,6 +237,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .icon,
@@ -477,23 +478,9 @@ p:not(p.h) {
 #modules {
   display: grid;
   grid-template-columns: 3fr 2fr;
-  grid-column-gap: 3vw;
+  grid-column-gap: 2vw;
   grid-row-gap: 2vw;
 }
-/* 
-#prev-read,
-#qt {
-  grid-column: 1 / 2;
-}
-
-#curr-reading,
-#discover {
-  grid-column: 2 / 3;
-}
-
-#community {
-  grid-column: 1 / 3;
-} */
 
 /*- - -  ----------- nav ------------ - - - - - - - */
 
@@ -539,7 +526,7 @@ nav li {
 /* - - -  ----------- hero ------------ - - - - - - - */
 #hero {
   text-align: center;
-  width: 40vw;
+  width: 45vw;
   margin: 8.4vw 0 8vw 0;
   display: flex;
   flex-direction: column;
@@ -547,6 +534,20 @@ nav li {
 }
 
 /* - - - - - - ----------- hero end ------------- - - - - - */
+/* - - - shelves - - - - */
+.shelf.r {
+  box-sizing: border-box;
+}
+.shelf.l {
+  width: 46vw;
+}
+.shelf.r {
+  width: 31vw;
+  /* justify-self: end; */
+}
+.shelf h2 {
+  padding-right: 1em;
+}
 /* - - - - - - --------- quote ----------- - - - - -  */
 
 #qt {
@@ -603,7 +604,9 @@ img.q:last-of-type {
 /* - - - - - - --------- books ----------- - - - - -  */
 div.book {
   display: inline-block;
-  width: 12vw;
+  /* width: 12vw; */
+
+  width: clamp(90px, 13vw, 15vw);
   aspect-ratio: 2 / 3;
   padding: var(--module-spacing);
 
@@ -623,7 +626,7 @@ div.books {
 }
 
 img.book-img {
-  width: clamp(100px, 12vw, 15vw);
+  width: clamp(90px, 13vw, 15vw);
   aspect-ratio: 2 / 3;
   box-shadow: 0.2em 0.2em 0.5em 0px var(--shadow);
 }
@@ -648,10 +651,6 @@ section.news .banner img {
   flex: 1;
 }
 
-/* .news .overlay > * {
-  margin: 0 calc(var(--module-spacing) * 2);
-} */
-
 .news .title {
   font-size: 1.3rem;
   display: block;
@@ -660,6 +659,12 @@ section.news .banner img {
   font-style: italic;
   text-decoration: underline;
   color: var(--dk-green);
+
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .news .stats {
@@ -689,6 +694,49 @@ section.news .banner img {
   font-size: 1vw;
   color: var(--dk-neutral);
 }
+
+.similar-to {
+  font-style: italic;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.similar-to:hover {
+  color: var(--dk-green);
+}
+
+#suggested .arch {
+  max-width: 100%;
+  min-width: 0;
+}
+
+#suggested h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#suggested .arch::after {
+  content: attr(data-full);
+  position: absolute;
+  text-align: right;
+  bottom: 80%;
+  left: 50%;
+  background: var(--lt-color);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px var(--opaque-bg);
+  padding: 4px 8px;
+  white-space: normal;
+  z-index: 10;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+#suggested .similar-to:hover ~ .arch::after,
+#suggested .arch:hover::after {
+  opacity: 1;
+}
+
 /* - - -  ----------- suggested end ------------ - - - - - - - */
 /* - - -  ----------- community read  ------------ - - - - - - - */
 #community .user-info {
@@ -708,6 +756,13 @@ section.news .banner img {
   text-align: left;
   grid-column: 2/3;
   grid-row: 1/2;
+
+  font-size: smaller;
+  display: inline-block;
+  max-width: 18ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #community .star-rating {
@@ -828,6 +883,65 @@ small {
   margin-top: calc(var(--module-spacing) * 3);
 }
 
+/**tablet media queries**/
+@media (max-width: 970px) {
+  .news .title {
+    font-size: 1rem;
+  }
+  .overflow {
+    display: none;
+  }
+
+  /* width: clamp(47vw, 49vw, 50vw); */
+  /* .shelf.l,
+  #hero {
+    width: 47vw;
+  } */
+
+  .shelf.l,
+  #hero {
+    width: 49vw;
+  }
+
+  .shelf.r {
+    width: calc((49vw * 2 / 3) + var(--module-spacing) * 2);
+  }
+
+  body > *:not(header):not(footer) {
+    margin: 0 7vw;
+  }
+
+  /* header {
+    margin: 2vw 4vw;
+  } */
+
+  footer {
+    margin: 2vw 7vw;
+  }
+
+  /* grid-column-gap: clamp(0.1vw, 0.4vw, 1vw); */
+  /* grid-column-gap: 0.9vw; */
+  /* #modules {
+    grid-column-gap: 0.5vw;
+  } */
+}
+
+/* - - -  ----------- medium desktop media queries------------ - - - - - - - */
+@media (max-width: 1343px) and (min-width: 970px) {
+  body > *:not(header):not(footer) {
+    margin: 0 10.7vw;
+  }
+
+  header {
+    margin: 2vw 4vw;
+  }
+
+  footer {
+    margin: 2vw 10.7vw;
+  }
+}
+
+/* - - -  ----------- medium desktop end ------------ - - - - - - - */
 /* - - -  ----------- large desktop media queries------------ - - - - - - - */
 @media (min-width: 1567px) {
   .news .description {

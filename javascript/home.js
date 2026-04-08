@@ -279,11 +279,27 @@ function renderShelvesUI() {
     "suggestedBooks"
   );
   renderShelfUI(communityRead, UIcommunityRead, "communityRead");
+
+  // suggested book origin
+  const similarToUI = document.querySelector("#suggested span.similar-to");
+  let similarToID = bookLists.suggestedInfo.similarToBook;
+  console.log("similarToID");
+  console.log(similarToID);
+  let similarToObj = bookLists.books.find((book) => book.id === similarToID);
+  console.log("similarToObj");
+  console.log(similarToObj);
+  let similarToName = similarToObj.title;
+
+  similarToUI.textContent = similarToName;
+
+  const suggestedParent = similarToUI.parentElement;
+  suggestedParent.parentElement.dataset.full = similarToName;
 }
 
 function renderShelfUI(bookList, shelfElement, shelfType) {
   // console.log("inside renderShelfUI");
   // console.log(bookList);
+
   shelfElement.innerHTML = "";
 
   bookList.forEach((book) => {
