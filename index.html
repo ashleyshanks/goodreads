@@ -23,8 +23,15 @@
     <header>
       <h1 class="hide">Goodreads</h1>
       <div class="arch nav">
+        <div id="mobile-nav">
+          <ul>
+            <li><a href="#">Bookshelf</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Connect</a></li>
+          </ul>
+        </div>
         <div class="l">
-          <button class="icon transp">
+          <button class="icon transp hamburger">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -120,18 +127,21 @@
 
     <main>
       <section id="hero">
-        <p class="h">Stay motivated.</p>
-        <p class="sb">
-          Join our 2026 reading challenge. Start off the new year on the right
-          foot and grow your book shelf!
-        </p>
-        <div class="btns">
-          <button class="primary">Sign Up</button>
-          <button class="secondary">Learn More</button>
+        <div class="l">
+          <p class="h">Stay motivated.</p>
+          <p class="sb">
+            Join our 2026 reading challenge. Start off the new year on the right
+            foot and grow your book shelf!
+          </p>
+          <div class="btns">
+            <button class="primary">Sign Up</button>
+            <button class="secondary">Learn More</button>
+          </div>
         </div>
+        <div class="r"></div>
       </section>
       <div id="modules">
-        <section class="shelf" id="prev-read">
+        <section class="shelf l" id="prev-read">
           <div class="arch">
             <a
               href="#"
@@ -161,7 +171,7 @@
           <div class="books"></div>
           <div class="border"></div>
         </section>
-        <section class="shelf" id="curr-read">
+        <section class="shelf r" id="curr-read">
           <div class="arch">
             <a
               class="see-more icon transp"
@@ -204,7 +214,7 @@
           <img class="author" src="images/george.png" alt="" />
           <img class="q" src="images/r-q.svg" alt="" />
         </section>
-        <section class="shelf" id="suggested">
+        <section class="shelf r" id="suggested">
           <div class="arch">
             <a class="see-more icon transp" href="#" aria-label=""
               ><svg
@@ -231,7 +241,7 @@
           <div class="books"></div>
           <div class="border"></div>
         </section>
-        <section class="shelf" id="community">
+        <section class="shelf l" id="community">
           <div class="arch">
             <a
               href="#"

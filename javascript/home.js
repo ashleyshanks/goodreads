@@ -474,45 +474,68 @@ function renderStars(rating) {
   return "★".repeat(count);
 }
 
+const hamburgerBtn = document.querySelector("button.hamburger");
+const mobileNav = document.querySelector("#mobile-nav");
+
+function openNav() {
+  mobileNav.classList.add("open");
+  hamburgerBtn.setAttribute("aria-expanded", true);
+}
+
+function closeNav() {
+  mobileNav.classList.remove("open");
+  hamburgerBtn.setAttribute("aria-expanded", false);
+}
+
+// CLICK (toggle)
+hamburgerBtn.addEventListener("click", () => {
+  const isOpen = mobileNav.classList.toggle("open");
+  hamburgerBtn.setAttribute("aria-expanded", isOpen);
+});
+
+// HOVER (open)
+hamburgerBtn.addEventListener("mouseenter", openNav);
+mobileNav.addEventListener("mouseenter", openNav);
+
+// LEAVE (close only if leaving BOTH)
+[hamburgerBtn, mobileNav].forEach((el) => {
+  el.addEventListener("mouseleave", (e) => {
+    if (
+      !hamburgerBtn.contains(e.relatedTarget) &&
+      !mobileNav.contains(e.relatedTarget)
+    ) {
+      closeNav();
+    }
+  });
+});
+
+// function to close nav
+function closeNav() {
+  mobileNav.classList.remove("open");
+  hamburgerBtn.setAttribute("aria-expanded", false);
+}
+
+// listen for mouse leaving BOTH elements
+[hamburgerBtn, mobileNav].forEach((el) => {
+  el.addEventListener("mouseleave", (e) => {
+    // check if mouse is going to the other element
+    if (
+      !hamburgerBtn.contains(e.relatedTarget) &&
+      !mobileNav.contains(e.relatedTarget)
+    ) {
+      closeNav();
+    }
+  });
+});
+
 const bgWrap = document.querySelector("#bg-img-wrap");
-const bgImg = document.querySelector("#body-bg-img");
-// const footer = document.querySelector("footer");
-
-// window.addEventListener("scroll", handleBgScroll);
-// window.addEventListener("resize", handleBgScroll);
-
-// function handleBgScroll() {
-//   const scrollY = window.scrollY;
-//   const beginMovement = 130;
-//   const bgMoveSpeed = 0.17;
-
-//   let movedAmount = 0;
-//   if (scrollY > beginMovement) {
-//     movedAmount = (scrollY - beginMovement) * bgMoveSpeed;
-//     bgImg.style.transform = `translateY(-${movedAmount}px)`;
-//   } else {
-//     bgImg.style.transform = "translateY(0)";
-//   }
-
-//   // Use body's known height to clip the image
-//   const imgRect = bgImg.getBoundingClientRect();
-//   const bodyBottom = document.body.getBoundingClientRect().bottom;
-
-//   if (imgRect.bottom > bodyBottom) {
-//     const clip = imgRect.bottom - bodyBottom;
-//     bgImg.style.clipPath = `inset(0 0 ${clip}px 0)`;
-//   } else {
-//     bgImg.style.clipPath = "none";
-//   }
-// }
-
-// handleBgScroll();
+const bgImg = document.querySelector("#bg-img");
 
 // How far down the page (px) before parallax kicks in
 const PARALLAX_START = 200;
 
 // Parallax strength — higher = more movement
-const PARALLAX_SPEED = 0.1;
+const PARALLAX_SPEED = 0.08;
 
 function updateParallax() {
   const scrollY = window.scrollY;
@@ -531,4 +554,4 @@ function updateParallax() {
 }
 
 window.addEventListener("scroll", updateParallax, { passive: true });
-updateParallax(); // run once on load
+updateParallax();
