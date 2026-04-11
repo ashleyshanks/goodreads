@@ -1,5 +1,59 @@
 "use strict";
 
+const hero = {
+  heading: "Stay motivated.",
+  subheading:
+    "Join our 2026 reading challenge. Start off the new year on the right foot and grow your book shelf!",
+  buttons: [
+    { text: "Sign Up", class: "primary" },
+    { text: "Learn More", class: "secondary" },
+  ],
+};
+
+const h = document.querySelector("#hero .h");
+const sb = document.querySelector("#hero .sb");
+const btns = document.querySelector("#hero .btns");
+
+h.textContent = hero.heading;
+sb.textContent = hero.subheading;
+
+btns.innerHTML = hero.buttons
+  .map((btn) => `<button class="${btn.class}">${btn.text}</button>`)
+  .join("");
+
+const newsData = {
+  sectionTitle: "News and stories",
+  sectionTitleOverflow: " we love",
+  article: {
+    image: {
+      src: "https://images.gr-assets.com/blogs/1771612745p8/3078.jpg",
+      alt: "Readers most anticipated spring books",
+    },
+    title: "Readers' 79 Most Anticipated Spring Books",
+    href: "#",
+    stats: "368 likes",
+    description:
+      "A curated list of 79 book recommendations perfect for spring reading, spanning a variety of genres and moods.",
+  },
+};
+
+// section title
+const newsH2 = document.querySelector(".news h2");
+newsH2.innerHTML = `${newsData.sectionTitle}<span class="overflow"> ${newsData.sectionTitleOverflow}</span>.`;
+
+// banner image
+const bannerImg = document.querySelector(".news .banner img");
+bannerImg.src = newsData.article.image.src;
+bannerImg.alt = newsData.article.image.alt;
+
+// article content
+const titleLink = document.querySelector(".news .title");
+titleLink.textContent = newsData.article.title;
+titleLink.href = newsData.article.href;
+
+document.querySelector(".news .stats").textContent = newsData.article.stats;
+document.querySelector(".news .description").textContent =
+  newsData.article.description;
 let bookLists;
 let communityRead;
 
