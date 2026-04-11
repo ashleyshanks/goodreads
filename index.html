@@ -8,18 +8,32 @@
       name="description"
       content="Find and read more books you'll love, and keep track of the books you want to read. Be part of the world's largest community of book lovers on Goodreads."
     />
-    <!-- FIXME cannonical link -->
     <!-- style sheets -->
     <link rel="stylesheet" href="https://use.typekit.net/nfh7kog.css" />
     <link rel="stylesheet" href="styles.css" />
     <!-- social media tags -->
   </head>
   <body>
-    <!-- FIXME skip links -->
-
     <div id="bg-img-wrap">
       <img id="bg-img" src="images/mobile-vine.png" alt="vine" />
     </div>
+
+    <svg style="display: none">
+      <symbol id="icon-dots" viewBox="0 0 16 16">
+        <path
+          d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
+          fill="currentColor"
+        />
+        <path
+          d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
+          fill="currentColor"
+        />
+      </symbol>
+    </svg>
     <header>
       <h1 class="hide">Goodreads</h1>
       <div class="arch nav">
@@ -126,14 +140,14 @@
     </header>
 
     <main>
-      <section id="hero">
+      <div id="hero">
         <div class="l">
           <p class="h"></p>
           <p class="sb"></p>
           <div class="btns"></div>
         </div>
         <div class="r"></div>
-      </section>
+      </div>
       <div id="modules">
         <section class="shelf l" id="prev-read">
           <div class="arch">
@@ -141,24 +155,7 @@
               href="#"
               class="see-more icon transp"
               aria-label="previously read books shelf"
-              ><svg
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                  fill="currentColor"
-                />
-              </svg>
+              ><svg><use href="#icon-dots" /></svg>
             </a>
             <h2>Books you read in <span class="year">2026</span>.</h2>
           </div>
@@ -171,31 +168,14 @@
               class="see-more icon transp"
               href="#"
               aria-label="currently reading book shelf"
-              ><svg
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                  fill="currentColor"
-                />
-              </svg>
+              ><svg><use href="#icon-dots" /></svg>
             </a>
             <h2>What are you reading<span class="overflow"> today</span>?</h2>
           </div>
           <div class="books"></div>
           <div class="border"></div>
         </section>
-        <section id="qt">
+        <div id="qt">
           <img class="q" src="images/l-q.svg" alt="" />
           <blockquote>
             A reader lives a thousand<br />
@@ -207,28 +187,11 @@
           </div>
           <img class="author" src="images/george.png" alt="" />
           <img class="q" src="images/r-q.svg" alt="" />
-        </section>
+        </div>
         <section class="shelf r" id="suggested">
           <div class="arch">
             <a class="see-more icon transp" href="#" aria-label=""
-              ><svg
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                  fill="currentColor"
-                />
-              </svg>
+              ><svg><use href="#icon-dots" /></svg>
             </a>
             <h2>Because you liked <span class="similar-to"></span>.</h2>
           </div>
@@ -242,24 +205,7 @@
               class="see-more icon transp"
               aria-label="community reads"
             >
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                  fill="currentColor"
-                />
-              </svg>
+              <svg><use href="#icon-dots" /></svg>
             </a>
             <h2>What the community is reading.</h2>
           </div>
@@ -273,24 +219,7 @@
               class="see-more icon transp"
               aria-label="news and stories"
             >
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
-                  fill="currentColor"
-                />
-              </svg>
+              <svg><use href="#icon-dots" /></svg>
             </a>
             <h2>News and stories<span class="overflow"> we love</span>.</h2>
           </div>
@@ -312,7 +241,7 @@
 
       <img src="images/logo.svg" alt="goodreads logo" class="lg-logo" />
 
-      <div class="nav2 general">
+      <div class="general">
         <h3>Company</h3>
         <ul>
           <li>
@@ -338,7 +267,7 @@
           </li>
         </ul>
       </div>
-      <div class="nav2 business">
+      <div class="business">
         <h3>Work with Us</h3>
         <ul>
           <li>
@@ -352,7 +281,7 @@
           </li>
         </ul>
       </div>
-      <div class="nav2 socials">
+      <div class="socials">
         <h3>Connect</h3>
         <ul>
           <li>
