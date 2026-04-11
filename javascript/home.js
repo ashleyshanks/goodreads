@@ -473,35 +473,62 @@ function renderStars(rating) {
   const count = Math.round(rating);
   return "★".repeat(count);
 }
-const bgImg = document.querySelector("img.body-bg-img");
-const footer = document.querySelector("footer");
 
-window.addEventListener("scroll", handleBgScroll);
-window.addEventListener("resize", handleBgScroll);
+const bgWrap = document.querySelector("#bg-img-wrap");
+const bgImg = document.querySelector("#body-bg-img");
+// const footer = document.querySelector("footer");
 
-function handleBgScroll() {
+// window.addEventListener("scroll", handleBgScroll);
+// window.addEventListener("resize", handleBgScroll);
+
+// function handleBgScroll() {
+//   const scrollY = window.scrollY;
+//   const beginMovement = 130;
+//   const bgMoveSpeed = 0.17;
+
+//   let movedAmount = 0;
+//   if (scrollY > beginMovement) {
+//     movedAmount = (scrollY - beginMovement) * bgMoveSpeed;
+//     bgImg.style.transform = `translateY(-${movedAmount}px)`;
+//   } else {
+//     bgImg.style.transform = "translateY(0)";
+//   }
+
+//   // Use body's known height to clip the image
+//   const imgRect = bgImg.getBoundingClientRect();
+//   const bodyBottom = document.body.getBoundingClientRect().bottom;
+
+//   if (imgRect.bottom > bodyBottom) {
+//     const clip = imgRect.bottom - bodyBottom;
+//     bgImg.style.clipPath = `inset(0 0 ${clip}px 0)`;
+//   } else {
+//     bgImg.style.clipPath = "none";
+//   }
+// }
+
+// handleBgScroll();
+
+// How far down the page (px) before parallax kicks in
+const PARALLAX_START = 200;
+
+// Parallax strength — higher = more movement
+const PARALLAX_SPEED = 0.1;
+
+function updateParallax() {
   const scrollY = window.scrollY;
-  const beginMovement = 130;
-  const bgMoveSpeed = 0.17;
 
-  let movedAmount = 0;
-  if (scrollY > beginMovement) {
-    movedAmount = (scrollY - beginMovement) * bgMoveSpeed;
-    bgImg.style.transform = `translateY(-${movedAmount}px)`;
-  } else {
-    bgImg.style.transform = "translateY(0)";
+  if (scrollY < PARALLAX_START) {
+    // Before the threshold — image stays locked in place
+    bgImg.style.transform = "translateY(0px)";
+    return;
   }
 
-  // Use body's known height to clip the image
-  const imgRect = bgImg.getBoundingClientRect();
-  const bodyBottom = document.body.getBoundingClientRect().bottom;
+  // Only count scroll distance after the threshold
+  const scrolledPast = scrollY - PARALLAX_START;
+  const offset = scrolledPast * PARALLAX_SPEED;
 
-  if (imgRect.bottom > bodyBottom) {
-    const clip = imgRect.bottom - bodyBottom;
-    bgImg.style.clipPath = `inset(0 0 ${clip}px 0)`;
-  } else {
-    bgImg.style.clipPath = "none";
-  }
+  bgImg.style.transform = `translateY(-${offset}px)`;
 }
 
-handleBgScroll();
+window.addEventListener("scroll", updateParallax, { passive: true });
+updateParallax(); // run once on load

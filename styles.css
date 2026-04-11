@@ -205,7 +205,7 @@ p.h {
   margin-bottom: 0.3em;
 }
 
-p.sb {
+.sb {
   font-size: clamp(1rem, 1.3vw, 2rem);
   margin-bottom: 0.8em;
   width: 20em;
@@ -219,6 +219,7 @@ body > *:not(header):not(footer) {
 
 header {
   margin: 2vw 1.5vw;
+  transition: margin 0.2s;
 }
 
 body {
@@ -229,7 +230,7 @@ body {
 - - -  ----------- ICONS ------------ - - - - - - - */
 
 .icon {
-  background-color: var(--lt-color);
+  background-color: var(--lt-neutral);
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -238,6 +239,14 @@ body {
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
+}
+
+.icon.transp {
+  background-color: transparent;
+}
+
+.icon.transp svg {
+  stroke-width: 1;
 }
 
 .icon,
@@ -252,11 +261,12 @@ body {
 }
 
 .icon.dk:hover {
-  background-color: var(--lt-color);
+  background-color: var(--lt-neutral);
 }
 
-.icon:hover svg {
-  color: var(--lt-color);
+.icon:hover svg,
+.icon.dk svg {
+  color: var(--lt-neutral);
 }
 
 .icon.dk:hover svg {
@@ -271,10 +281,6 @@ body {
   width: 25px;
   color: var(--dk-neutral);
   fill: none;
-}
-
-.icon.dk svg {
-  color: var(--lt-color);
 }
 
 button.profile,
@@ -296,12 +302,27 @@ a.profile img {
 body {
   background-image: url("images/canvastexture.png");
   background-blend-mode: multiply;
+
+  position: relative;
 }
 
-img.body-bg-img {
+#bg-img-wrap {
+  margin: 0;
+  position: absolute;
+  z-index: -10;
+  pointer-events: none;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#body-bg-img {
   height: 180vw;
   top: 0;
-  left: 48vw;
+  left: 50%;
   position: absolute;
   transform: translateY(0);
   will-change: transform;
@@ -336,7 +357,7 @@ img.body-bg-img {
 
 .progressbar {
   display: grid;
-  margin: var(--module-spacing) 0;
+  margin-top: var(--module-spacing);
   width: 100%;
   height: var(--progress-bar-height);
 
@@ -352,7 +373,7 @@ img.body-bg-img {
 }
 
 .progressbar-bg {
-  background-color: var(--lt-color);
+  background-color: var(--lt-neutral);
   z-index: 1;
   width: 100%;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.092);
@@ -412,8 +433,8 @@ button.secondary,
 button.tertiary {
   border-radius: var(--arch-top-r);
   font-size: clamp(1rem, 1.1vw, 1.1vw);
-  width: clamp(140px, 12vw, 18vw);
-  height: clamp(30px, 2.4vw, 2.4vw);
+  width: 15em;
+  height: 5em;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -457,12 +478,12 @@ button.tertiary {
 
 .btns {
   display: flex;
-  gap: 0.5em;
+  gap: 0.8em;
   width: fit-content;
   margin: 0 auto;
 }
 
-a.eye {
+a.see-more {
   margin: 0.3em;
   margin-left: 0.6em;
   margin-top: 0.6em;
@@ -606,7 +627,7 @@ div.book {
 
   width: clamp(120px, 12vw, 15vw);
   aspect-ratio: 2 / 3;
-  padding: var(--module-spacing);
+  margin: var(--module-spacing);
 
   cursor: pointer;
 }
@@ -620,7 +641,7 @@ div.overlay {
 
 div.books {
   text-align: center;
-  padding-top: var(--module-spacing);
+  padding: var(--module-spacing);
 }
 
 img.book-img {
@@ -641,7 +662,6 @@ section.news .banner {
   margin-bottom: var(--module-spacing);
 }
 section.news .banner img {
-  /* width: clamp(210px, 25vw, 31vw); */
   width: 100%;
 }
 
@@ -683,10 +703,11 @@ section.news .banner img {
 #suggested .rating-info {
   display: flex;
   text-align: left;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
   grid-template-columns: auto;
+  gap: 0.8em;
   margin: calc(var(--module-spacing) * 0.7) 0 calc(var(--module-spacing) * 0.5)
     0;
   font-size: 1vw;
@@ -740,7 +761,6 @@ section.news .banner img {
 #community .user-info {
   display: grid;
   margin-top: 0.5em;
-  /* grid-template-columns: 1fr auto; */
   grid-template-rows: 1fr 1fr;
 }
 
@@ -769,20 +789,7 @@ section.news .banner img {
   grid-row: 2/3;
 }
 
-/* - - -  ----------- footer------------ - - - - - - - */
-#suggested .rating-info {
-  display: flex;
-  text-align: left;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  grid-template-columns: auto;
-  margin: calc(var(--module-spacing) * 0.7) 0 calc(var(--module-spacing) * 0.5)
-    0;
-  font-size: 1vw;
-  color: var(--dk-neutral);
-}
-/* - - -  ----------- footer end ------------ - - - - - - - */
+/* - - -  ----------- ffooter  ------------ - - - - - - - */
 footer {
   background-color: var(--md-neutral);
   display: grid;
@@ -881,28 +888,48 @@ small {
   margin-top: calc(var(--module-spacing) * 3);
 }
 
-/**tablet media queries**/
-@media (max-width: 780px) {
-  #modules {
-    display: block;
+/**tablet mobile media queries**/
+@media (max-width: 870px) {
+  :root {
+    --progress-bar-height: 17px;
+    --font-sm: 0.9rem;
+    --font-md: 1.1rem;
+    --font-lg: 1.2rem;
+    --module-spacing: 1em;
   }
 
-  img.book-img,
-  div.book {
-    width: 28vw;
+  span.rating-number,
+  span.rating-count,
+  #community .username,
+  .rating,
+  .rating-bg,
+  .news .stats {
+    font-size: var(--font-sm);
   }
 
-  div.book {
-    padding: 1em;
-    padding-right: 0;
+  .sb,
+  .btns,
+  .news .description,
+  .nav2 li {
+    font-size: var(--font-md);
   }
 
-  div.book:last-of-type {
-    padding-right: 1em;
+  .news .title,
+  footer h3,
+  h2 {
+    font-size: var(--font-lg);
   }
 
-  #hero {
-    width: 100vw;
+  blockquote {
+    font-size: 2em;
+  }
+
+  body > *:not(header):not(footer) {
+    margin: 0 1.5vw;
+  }
+
+  footer {
+    margin: 2vw 1.5vw;
   }
 
   nav {
@@ -917,58 +944,179 @@ small {
     justify-content: center;
   }
 
+  #hero {
+    width: 100vw;
+    margin-top: 6em;
+    margin-bottom: 5em;
+  }
+
+  #qt .btns {
+    margin: 0 auto;
+
+    grid-column: 2/3;
+  }
+
+  button.tertiary {
+    padding-top: 0.7em;
+    margin-left: 0;
+  }
+
+  .btns {
+    margin-top: 0.5em;
+    flex-direction: column;
+  }
+
+  button.primary,
+  button.secondary,
+  button.tertiary {
+    width: 15em;
+    height: 2.4em;
+  }
+
+  #modules {
+    display: block;
+  }
+
+  /* mobile books */
+  div.books {
+    padding: var(--module-spacing);
+    display: grid;
+    justify-items: stretch;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: var(--module-spacing);
+  }
+
+  img.book-img,
+  div.book {
+    width: 28vw;
+  }
+
+  img.book-img {
+    width: 100%;
+  }
+
+  div.book {
+    padding: 0;
+    margin: 0;
+  }
+
+  .progressbar {
+    margin-top: 0.6em;
+  }
+
+  #qt {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+  blockquote {
+    margin-bottom: 0.4em;
+    text-align: center;
+
+    grid-row: 2/3;
+    grid-column: 2/3;
+  }
+
+  blockquote br {
+    display: none;
+  }
+
+  img.q {
+    min-width: 1em;
+    max-width: 1em;
+  }
+
+  img.author {
+    transform: none;
+    width: 30vw;
+
+    grid-row: 1/2;
+    grid-column: 2/3;
+    justify-self: center;
+  }
+
+  #community .user-info {
+    justify-content: center;
+    column-gap: 0.5em;
+  }
+
+  #body-bg-img {
+    position: relative;
+    height: 115%;
+  }
+
+  /* mobile news */
+
+  section.news .banner {
+    margin: 0;
+    margin-top: var(--module-spacing);
+    margin-bottom: var(--module-spacing);
+  }
+  section.news .banner img {
+    /* width: clamp(210px, 25vw, 31vw); */
+    width: 100%;
+  }
+
+  .news .title {
+    margin: 0 calc(var(--module-spacing) - 5px);
+  }
+
+  .news .stats {
+    margin: 0 calc(var(--module-spacing) + 2px);
+  }
+
+  .news .description {
+    display: none;
+    line-height: 1.7rem;
+    margin: var(--module-spacing);
+    margin-top: 0;
+  }
+
   .news .description {
     display: block;
   }
 
-  body > *:not(header):not(footer) {
-    margin: 0 1.5vw;
-  }
-
+  /* mobile footer */
   footer {
-    margin: 2vw 1.5vw;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10em;
+    padding: 1em;
+    justify-content: center;
+    background-image: linear-gradient(#e0d5c943, #e0d5c943),
+      url(images/w-vine.png);
   }
 
-  blockquote {
-    font-size: 2.3em;
-    transform: translateX(5vw);
+  .general {
+    justify-self: end;
   }
 
-  img.q {
-    min-width: 3vw;
-    max-width: 3vw;
+  footer > * {
+    margin: 0;
   }
 
-  img.author {
-    width: 20vw;
-
-    /* transform: translateX(-1vw); */
+  footer h3 {
+    margin-bottom: 0.3em;
   }
 
-  #qt .btns {
-    transform: translateX(5vw);
+  .lg-logo {
+    width: 15em;
   }
 
-  span.rating-number,
-  span.rating-count,
-  #community .username {
-    font-size: 1.2rem;
+  .lg-logo,
+  #app-links {
+    margin: 2em auto;
   }
 
-  .rating,
-  .rating-bg {
-    font-size: 1.4rem;
+  footer small {
+    margin: 0 auto;
   }
 }
 
-@media (max-width: 970px) {
-  .news .title {
-    font-size: 1rem;
-  }
+/* @media (max-width: 970px) {
   .overflow {
     display: none;
   }
-}
+} */
 
 @media (max-width: 970px) and (min-width: 780px) {
   body > *:not(header):not(footer) {
