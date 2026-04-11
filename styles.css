@@ -150,6 +150,10 @@ button {
   --module-spacing: 0.8vw;
   --arch-top-r: 30px;
   --arch-bot-r: 5px;
+
+  --font-sm: 0.9rem;
+  --font-md: 1rem;
+  --font-lg: 1.1rem;
 }
 
 /* - - - - - - ----------- ROOT END ------------- - - - - -  
@@ -169,12 +173,36 @@ p.h,
   font-family: lora, serif;
 }
 
+p.h {
+  font-size: 3em;
+}
+
 nav,
 h2,
 h3,
-p.h,
-footer h3 {
-  font-size: clamp(1rem, 1.2vw, 1.3rem);
+footer h3,
+blockquote,
+.news .title {
+  font-size: var(--font-lg);
+}
+
+.sb,
+button.primary,
+button.secondary,
+button.tertiary {
+  font-size: var(--font-md);
+}
+
+.rating-bg,
+.rating,
+.news .stats,
+#suggested .rating-info,
+#community .username {
+  font-size: var(--font-sm);
+}
+
+.nav2 li {
+  font-size: 0.9rem;
 }
 
 nav a {
@@ -199,14 +227,12 @@ nav a:hover::after {
 }
 
 p.h {
-  font-size: clamp(3rem, 3.8vw, 5rem);
   font-weight: 800;
   font-style: italic;
   margin-bottom: 0.3em;
 }
 
 .sb {
-  font-size: clamp(1rem, 1.3vw, 2rem);
   margin-bottom: 0.8em;
   width: 20em;
 }
@@ -319,8 +345,8 @@ body {
   overflow: hidden;
 }
 
-#body-bg-img {
-  height: 180vw;
+#bg-img {
+  height: 200%;
   top: 0;
   left: 50%;
   position: absolute;
@@ -409,7 +435,6 @@ body {
 
 .rating-bg,
 .rating {
-  font-size: 1.2vw;
   letter-spacing: 0.25vw;
   grid-area: 1/1;
 }
@@ -432,9 +457,8 @@ button.primary,
 button.secondary,
 button.tertiary {
   border-radius: var(--arch-top-r);
-  font-size: clamp(1rem, 1.1vw, 1.1vw);
-  width: 15em;
-  height: 5em;
+  width: 10em;
+  height: 2em;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -578,7 +602,6 @@ nav li {
 blockquote {
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(1rem, 2.3vw, 4rem);
   /* margin: 0em 1.8vw;
   margin-top: 0.5em; */
   line-height: 1.7;
@@ -621,7 +644,7 @@ img.q:last-of-type {
 
 /* - - -  ----------- quote end  ------------ - - - - - - - */
 /* - - - - - - --------- books ----------- - - - - -  */
-div.book {
+.book {
   display: inline-block;
   /* width: 12vw; */
 
@@ -632,14 +655,14 @@ div.book {
   cursor: pointer;
 }
 
-div.books,
+.books,
 div.overlay {
   background-color: var(--opaque-bg);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
 
-div.books {
+.books {
   text-align: center;
   padding: var(--module-spacing);
 }
@@ -670,7 +693,6 @@ section.news .banner img {
 }
 
 .news .title {
-  font-size: 1.3rem;
   display: block;
   margin: 0 calc(var(--module-spacing) * 2);
   line-height: 1.2;
@@ -688,7 +710,6 @@ section.news .banner img {
 .news .stats {
   color: var(--dk-neutral);
   margin: 0 calc(var(--module-spacing) * 2);
-  font-size: 0.8rem;
 }
 
 .news .description {
@@ -710,7 +731,6 @@ section.news .banner img {
   gap: 0.8em;
   margin: calc(var(--module-spacing) * 0.7) 0 calc(var(--module-spacing) * 0.5)
     0;
-  font-size: 1vw;
   color: var(--dk-neutral);
 }
 
@@ -775,7 +795,6 @@ section.news .banner img {
   grid-column: 2/3;
   grid-row: 1/2;
 
-  font-size: smaller;
   display: inline-block;
   max-width: 18ch;
   white-space: nowrap;
@@ -815,7 +834,6 @@ footer h3 {
 }
 
 .nav2 li {
-  padding: 0.3em 0;
   font-size: 0.9rem;
 }
 
@@ -828,6 +846,7 @@ footer small,
 .lg-logo {
   grid-row: 1/2;
   width: 11em;
+  cursor: pointer;
 }
 
 .general {
@@ -888,8 +907,44 @@ small {
   margin-top: calc(var(--module-spacing) * 3);
 }
 
-/**tablet mobile media queries**/
-@media (max-width: 870px) {
+/* mobile footer */
+@media (max-width: 780px) {
+  footer {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10em;
+    padding: 1em;
+    justify-content: center;
+    background-image: linear-gradient(#e0d5c943, #e0d5c943),
+      url(images/w-vine.png);
+  }
+
+  .general {
+    justify-self: end;
+  }
+
+  footer > * {
+    margin: 0;
+  }
+
+  footer h3 {
+    margin-bottom: 0.3em;
+  }
+
+  .lg-logo {
+    width: 15em;
+  }
+
+  .lg-logo,
+  #app-links {
+    margin: 2em auto;
+  }
+
+  footer small {
+    margin: 0 auto;
+  }
+}
+/**mobile to medium desktop media queries**/
+@media (max-width: 1000px) {
   :root {
     --progress-bar-height: 17px;
     --font-sm: 0.9rem;
@@ -978,25 +1033,24 @@ small {
   }
 
   /* mobile books */
-  div.books {
+  .books {
     padding: var(--module-spacing);
     display: grid;
-    justify-items: stretch;
-    align-items: stretch;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: var(--module-spacing);
   }
 
-  img.book-img,
-  div.book {
-    width: 28vw;
+  .book {
+    width: 100%; /* stretch to fill the 1fr column */
   }
 
-  img.book-img {
-    width: 100%;
+  .book img {
+    width: 100%; /* fill the .book div */
+    display: block; /* removes inline whitespace gap */
+    height: auto; /* keeps aspect ratio */
   }
 
-  div.book {
+  .book {
     padding: 0;
     margin: 0;
   }
@@ -1040,7 +1094,9 @@ small {
     column-gap: 0.5em;
   }
 
-  #body-bg-img {
+  /* mobile background bg*/
+
+  #bg-img {
     position: relative;
     height: 115%;
   }
@@ -1075,71 +1131,23 @@ small {
   .news .description {
     display: block;
   }
-
-  /* mobile footer */
-  footer {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10em;
-    padding: 1em;
-    justify-content: center;
-    background-image: linear-gradient(#e0d5c943, #e0d5c943),
-      url(images/w-vine.png);
-  }
-
-  .general {
-    justify-self: end;
-  }
-
-  footer > * {
-    margin: 0;
-  }
-
-  footer h3 {
-    margin-bottom: 0.3em;
-  }
-
-  .lg-logo {
-    width: 15em;
-  }
-
-  .lg-logo,
-  #app-links {
-    margin: 2em auto;
-  }
-
-  footer small {
-    margin: 0 auto;
-  }
 }
 
-/* @media (max-width: 970px) {
-  .overflow {
-    display: none;
-  }
-} */
-
-@media (max-width: 970px) and (min-width: 780px) {
-  body > *:not(header):not(footer) {
-    margin: 0 7vw;
+@media (min-width: 780px) and (max-width: 1000px) {
+  #modules {
+    margin: 0 9vw;
   }
 
   footer {
-    margin: 2vw 7vw;
-  }
-}
-
-/* - - -  ----------- medium desktop media queries------------ - - - - - - - */
-@media (max-width: 1343px) and (min-width: 970px) {
-  body > *:not(header):not(footer) {
-    margin: 0 10.7vw;
+    margin: 2vw 9vw;
   }
 
-  header {
-    margin: 2vw 4vw;
+  img.author {
+    width: 11em;
   }
 
-  footer {
-    margin: 2vw 10.7vw;
+  #bg-img {
+    left: 60%;
   }
 }
 
