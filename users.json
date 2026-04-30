@@ -4,7 +4,17 @@
     "fName": "Olivia",
     "lName": "Hartman",
     "img": "u1",
-    "used": false
+    "favBooks": [1, 4, 7, 8, 10],
+    "bio": "Hi, I'm Ella! I've been using GR forever and I LOVE the new site look. xxx",
+    "quote": "You cannot swim for new horizons until you have courage to lose sight of the shore.",
+    "quoteAuthor": "William Faulkner",
+    "booksCount": 142,
+    "friendsCount": 85,
+    "reviewCount": 97,
+    "used": false,
+    "topGenre": "Non-Fiction",
+    "topReviewedAuthor": "Samantha Harvey",
+    "mostReadAuthor": "Amber Lyon"
   },
   {
     "username": "PixelPioneer3",

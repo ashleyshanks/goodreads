@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goodreads | Meet your next favorite book</title>
+    <meta
+      name="description"
+      content="Find and read more books you'll love, and keep track of the books you want to read. Be part of the world's largest community of book lovers on Goodreads."
+    />
+    <!-- style sheets -->
+    <link rel="stylesheet" href="https://use.typekit.net/nfh7kog.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile.css" />
+    <!-- social media tags -->
+  </head>
+  <body>
+    
+
+    <svg style="display: none">
+      <symbol id="icon-dots" viewBox="0 0 16 16">
+        <path
+          d="M4 8C4 9.10457 3.10457 10 2 10C0.895431 10 0 9.10457 0 8C0 6.89543 0.895431 6 2 6C3.10457 6 4 6.89543 4 8Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10 8C10 9.10457 9.10457 10 8 10C6.89543 10 6 9.10457 6 8C6 6.89543 6.89543 6 8 6C9.10457 6 10 6.89543 10 8Z"
+          fill="currentColor"
+        />
+        <path
+          d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z"
+          fill="currentColor"
+        />
+      </symbol>
+    </svg>
+    <header>
+      <h1 class="hide">Goodreads</h1>
+      <div class="arch nav">
+        <div id="mobile-nav">
+          <ul>
+            <li><a href="#">Bookshelf</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="#">Connect</a></li>
+          </ul>
+        </div>
+        <div class="l">
+          <button class="icon transp hamburger">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.75 7C20.75 7.41421 20.4142 7.75 20 7.75L4 7.75C3.58579 7.75 3.25 7.41421 3.25 7C3.25 6.58579 3.58579 6.25 4 6.25L20 6.25C20.4142 6.25 20.75 6.58579 20.75 7Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                fill="currentColor"
+              />
+              <path
+                d="M20.75 12C20.75 12.4142 20.4142 12.75 20 12.75L4 12.75C3.58579 12.75 3.25 12.4142 3.25 12C3.25 11.5858 3.58579 11.25 4 11.25L20 11.25C20.4142 11.25 20.75 11.5858 20.75 12Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                fill="currentColor"
+              />
+              <path
+                d="M20.75 17C20.75 17.4142 20.4142 17.75 20 17.75L4 17.75C3.58579 17.75 3.25 17.4142 3.25 17C3.25 16.5858 3.58579 16.25 4 16.25L20 16.25C20.4142 16.25 20.75 16.5858 20.75 17Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <a href="index.html" class="logo">
+            <img
+              src="images/logo.svg"
+              alt="logo, link to homepage"
+              class="sm-logo"
+            />
+          </a>
+          <nav>
+            <ul>
+              <li><a href="#">Bookshelf</a></li>
+              <li><a href="#">Explore</a></li>
+              <li><a href="#">Connect</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="r">
+          <ul>
+            <li>
+              <button class="icon dk" aria-label="search">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button class="icon" aria-label="messages">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M1.60175 4.20114C2.14997 3.47258 3.02158 3 4 3H20C20.9784 3 21.85 3.47258 22.3982 4.20113L12 11.7635L1.60175 4.20114Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M1 6.2365V18C1 19.6523 2.34772 21 4 21H20C21.6523 21 23 19.6523 23 18V6.23649L13.1763 13.381C12.475 13.891 11.525 13.891 10.8237 13.381L1 6.2365Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button class="icon" aria-label="notifications">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M8.35179 20.2418C9.19288 21.311 10.5142 22 12 22C13.4858 22 14.8071 21.311 15.6482 20.2418C13.2264 20.57 10.7736 20.57 8.35179 20.2418Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M18.7491 9V9.7041C18.7491 10.5491 18.9903 11.3752 19.4422 12.0782L20.5496 13.8012C21.5612 15.3749 20.789 17.5139 19.0296 18.0116C14.4273 19.3134 9.57274 19.3134 4.97036 18.0116C3.21105 17.5139 2.43882 15.3749 3.45036 13.8012L4.5578 12.0782C5.00972 11.3752 5.25087 10.5491 5.25087 9.7041V9C5.25087 5.13401 8.27256 2 12 2C15.7274 2 18.7491 5.13401 18.7491 9Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button aria-label="my profile" class="icon profile">
+                <img src="images/user.jpg" alt="user" />
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div id="profile">
+        <div id="prof-banner">
+
+            <picture>
+          <img src="images/banner1-1020x150.jpg" alt="user banner image" />
+        </picture>
+        </div>
+        <img id="prof-pic" src="storage/u10.jpg" alt="user profile image" />
+        <div id="about-main">
+    
+            <div id="stats">
+              <p id="username">goodreadsuser</p>
+              <p ><span id="book-count"></span> books read</p>
+              <p ><span id="friend-count">208</span> connections</p>
+              <p ><span id="review-count"> </span> reviews</p>
+            </div>
+            <section class="shelf">
+              <div class="arch">
+                <h2><span class="f-name">Janette</span> <span class="l-name">Doe</span></h2>
+              </div>
+              <div id="bio" class="overlay">
+                Hi, I'm Janette! I've been using GR forever and I love the new
+                site look. Check out my reviews!
+              </div>
+              <div class="border"></div>
+            </section>
+          </div>
+      
+        <div class="btns">
+            <button class="primary">Connect</button>
+            <button class="secondary">Message</button>
+          </div>
+      </div>
+      <div id="modules">
+        <section class="shelf" id="book-faves">
+          <div class="arch">
+            <h2><span class="f-name">Janette</span>'s Favorites</h2>
+          </div>
+          <div class="books"></div>
+          <div class="border"></div>
+        </section>
+        <div id="user-qt">
+          <img class="q" src="images/l-q.svg" alt="double quotes" />
+          <blockquote>
+            A reader lives a thousand<br />
+            lives before they die.
+          </blockquote>
+          <div class="btns">
+            <button class="secondary">Meet the Author</button>
+            <button class="tertiary">George R.R. Martin</button>
+          </div>
+          <img id="sm-leaves" src="images/smleaves.png" alt="decorative leaves" />
+          <img class="q" src="images/r-q.svg" alt="double quotes" />
+        </div>
+        <section class="shelf" id="reader-recap">
+          <div class="arch">
+            <h2>2026 Reader Recap</h2>
+          </div>
+          <div id="recap">
+            <div id="recap-stack">
+              <div class="visual"></div>
+              <p><span class="inches"></span>" Book Stack</p>
+            </div>
+            <dl id="recap-info">
+              <div class="num" id="pg-ct">
+                <dt>Pages read</dt>
+                <dd>394034</dd>
+              </div>
+
+              <div class="num" id="bk-ct">
+                <dt>Books explored</dt>
+                <dd>80</dd>
+              </div>
+
+              <div class="num" id="fr-ct">
+                <dt>Connections made</dt>
+                <dd>25</dd>
+              </div>
+
+              <div class="txt" id="top-genre">
+                <dt>Most read genre</dt>
+                <dd>Science Fiction</dd>
+              </div>
+
+              <div class="txt" id="top-reviewed-author">
+                <dt>Top reviewed author</dt>
+                <dd>Pierce Brown</dd>
+              </div>
+
+              <div class="txt" id="most-read-author">
+                <dt>Most read author</dt>
+                <dd>Becky Chambers</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="border"></div>
+        </section>
+        
+    </main>
+    <footer>
+      <h2 class="hide">Secondary navigation</h2>
+
+      <img src="images/logo.svg" alt="goodreads logo" class="lg-logo" />
+
+      <div class="general">
+        <h3>Company</h3>
+        <ul>
+          <li>
+            <a href="#">About Us</a>
+          </li>
+          <li>
+            <a href="#">Careers</a>
+          </li>
+          <li>
+            <a href="#">Terms</a>
+          </li>
+          <li>
+            <a href="#">Privacy</a>
+          </li>
+          <li>
+            <a href="#">Interest Based Ads</a>
+          </li>
+          <li>
+            <a href="#">Ad Preferences</a>
+          </li>
+          <li>
+            <a href="#">Help</a>
+          </li>
+        </ul>
+      </div>
+      <div class="business">
+        <h3>Work with Us</h3>
+        <ul>
+          <li>
+            <a href="#">Authors</a>
+          </li>
+          <li>
+            <a href="#">Advertise</a>
+          </li>
+          <li>
+            <a href="#">Authors & Ads Blog</a>
+          </li>
+        </ul>
+      </div>
+      <div class="socials">
+        <h3>Connect</h3>
+        <ul>
+          <li>
+            <a href="#" aria-label="facebook" class="icon fb"
+              ><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill="currentColor"
+                  d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"
+                /></svg
+            ></a>
+          </li>
+          <li>
+            <a href="#" aria-label="instagram" class="icon instagram">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
+                  fill="currentColor"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="x" class="icon x">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 512 512"
+                xml:space="preserve"
+              >
+                <g id="7935ec95c421cee6d86eb22ecd12f847">
+                  <path
+                    fill="currentColor"
+                    style="display: inline"
+                    d="M459.186,151.787c0.203,4.501,0.305,9.023,0.305,13.565
+            c0,138.542-105.461,298.285-298.274,298.285c-59.209,0-114.322-17.357-160.716-47.104c8.212,0.973,16.546,1.47,25.012,1.47
+            c49.121,0,94.318-16.759,130.209-44.884c-45.887-0.841-84.596-31.154-97.938-72.804c6.408,1.227,12.968,1.886,19.73,1.886
+            c9.55,0,18.816-1.287,27.617-3.68c-47.955-9.633-84.1-52.001-84.1-102.795c0-0.446,0-0.882,0.011-1.318
+            c14.133,7.847,30.294,12.562,47.488,13.109c-28.134-18.796-46.637-50.885-46.637-87.262c0-19.212,5.16-37.218,14.193-52.7
+            c51.707,63.426,128.941,105.156,216.072,109.536c-1.784-7.675-2.718-15.674-2.718-23.896c0-57.891,46.941-104.832,104.832-104.832
+            c30.173,0,57.404,12.734,76.525,33.102c23.887-4.694,46.313-13.423,66.569-25.438c-7.827,24.485-24.434,45.025-46.089,58.002
+            c21.209-2.535,41.426-8.171,60.222-16.505C497.448,118.542,479.666,137.004,459.186,151.787z"
+                  ></path>
+                </g>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" aria-label="linkedin" class="icon linkedin">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 552.77 552.77"
+                xml:space="preserve"
+              >
+                <g>
+                  <g>
+                    <path
+                      fill="currentColor"
+                      d="M17.95,528.854h71.861c9.914,0,17.95-8.037,17.95-17.951V196.8c0-9.915-8.036-17.95-17.95-17.95H17.95
+       C8.035,178.85,0,186.885,0,196.8v314.103C0,520.816,8.035,528.854,17.95,528.854z"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M17.95,123.629h71.861c9.914,0,17.95-8.036,17.95-17.95V41.866c0-9.914-8.036-17.95-17.95-17.95H17.95
+       C8.035,23.916,0,31.952,0,41.866v63.813C0,115.593,8.035,123.629,17.95,123.629z"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M525.732,215.282c-10.098-13.292-24.988-24.223-44.676-32.791c-19.688-8.562-41.42-12.846-65.197-12.846
+       c-48.268,0-89.168,18.421-122.699,55.27c-6.672,7.332-11.523,5.729-11.523-4.186V196.8c0-9.915-8.037-17.95-17.951-17.95h-64.192
+       c-9.915,0-17.95,8.035-17.95,17.95v314.103c0,9.914,8.036,17.951,17.95,17.951h71.861c9.915,0,17.95-8.037,17.95-17.951V401.666
+       c0-45.508,2.748-76.701,8.244-93.574c5.494-16.873,15.66-30.422,30.488-40.649c14.83-10.227,31.574-15.343,50.24-15.343
+       c14.572,0,27.037,3.58,37.393,10.741c10.355,7.16,17.834,17.19,22.436,30.104c4.604,12.912,6.904,41.354,6.904,85.33v132.627
+       c0,9.914,8.035,17.951,17.949,17.951h71.861c9.914,0,17.949-8.037,17.949-17.951V333.02c0-31.445-1.982-55.607-5.941-72.48
+       S535.836,228.581,525.732,215.282z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <section id="app-links">
+        <a href="#">
+          <img
+            class="apple"
+            src="images/appstore.png"
+            alt="download on app store"
+          />
+        </a>
+        <a href="#" aria-label="download on google play">
+          <img
+            class="google"
+            src="images/googleplay.png"
+            alt="download on google play"
+          />
+        </a>
+      </section>
+      <small>©2026 Goodreads LLC</small>
+    </footer>
+    <script src="javascript/profile.js" defer></script>
+    <!-- <script src="javascript/test.js" defer></script> -->
+  </body>
+</html>

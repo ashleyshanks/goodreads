@@ -1,0 +1,79 @@
+/* :root {
+  --arch-top-r: 20px;
+  --arch-bot-r: 4px;
+} */
+
+#profile {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  /* grid-template-rows: 100px 1fr min-content; */
+}
+
+#prof-banner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover; /* fills the box, crops edges instead of distorting */
+  object-position: center; /* crop from the center */
+}
+
+#prof-banner {
+  overflow: hidden;
+  border-radius: 50px 50px 10px 10px;
+  margin: 0 15px;
+  z-index: -1;
+  grid-area: 1 / 1 / 2 / -1;
+
+  width: 100%;
+}
+
+#sm-leaves {
+  width: 200px;
+}
+
+#prof-pic {
+  width: 100%;
+  border-radius: 50%;
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+#stats {
+  background: url(images/canvastexture.png), var(--md-neutral);
+  border-radius: 50px;
+  padding: 0.5em;
+  text-align: center;
+}
+
+#username {
+  font-family: lora, serif;
+  font-size: var(--font-md);
+  font-weight: 500;
+}
+
+#stats span:not(:first-of-type) {
+  margin-left: 2em;
+}
+
+#book-count::before,
+#friend-count::before,
+#review-count::before {
+  content: "•";
+  margin-right: 2em;
+  color: var(--dk-neutral);
+}
+
+#profile h2 {
+  font-family: lora, serif;
+  font-size: 1.7rem;
+  font-style: italic;
+  font-weight: 500;
+  padding: 0.3em;
+  margin-left: 0.15em;
+}
+
+@media (max-width: 1000px) {
+  #profile h2 {
+    font-size: 2em;
+  }
+}
