@@ -17,6 +17,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   const recapAuthTopRev = document.querySelector("#top-reviewed-author dd");
   const recapAuthMostRead = document.querySelector("#most-read-author dd");
 
+  const loadJsonBooks = async () => {
+    try {
+      const response = await fetch(
+        "https://ashleyshanks.github.io/goodreads/books.json"
+      );
+      const books = await response.json();
+      return books;
+    } catch (exception) {
+      console.log(exception);
+      return [];
+    }
+  };
+
   async function fetchUsers() {
     try {
       const response = await fetch(
@@ -62,8 +75,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     friendsCount,
     reviewCount,
   }) {
-    console.log("username");
-    console.log(username);
     usernameEl.textContent = username;
     booksCountEl.textContent = booksCount;
     friendCountEl.textContent = friendsCount;
@@ -79,5 +90,39 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const user = await getProfileInfo();
 
+  async function renderFavBooks({ favBooks }) {
+    const books = await loadJsonBooks();
+
+    // get only the user's favorite books
+    const favoriteBooks = books.filter((book) => favBooks.includes(book.id));
+
+    // clear container (important if re-rendering)
+    favBookDiv.innerHTML = "";
+
+    favoriteBooks.forEach((book) => {
+      const bookDiv = document.createElement("div");
+      bookDiv.classList.add("book");
+
+      bookDiv.innerHTML = `
+        <img class="book-img" src="storage/b${book.id}.jpg" alt="${book.title}">
+      `;
+
+      favBookDiv.appendChild(bookDiv);
+    });
+  }
+
+  function renderUserQuote({ quote, quoteAuthor }) {
+    quoteEl.textContent = quote;
+    quoteAuthorEl.textContent = quoteAuthor;
+
+    if (quote.length < 48) {
+      quoteEl.classList.add("inline");
+    } else {
+      quoteEl.classList.remove("inline");
+    }
+  }
+
   renderProfileIntro(user);
+  renderFavBooks(user);
+  renderUserQuote(user);
 });

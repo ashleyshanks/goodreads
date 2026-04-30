@@ -957,19 +957,22 @@ small {
 }
 
 /* mobile footer */
+/* @media (max-width: 780px) {
+} */
+
 @media (max-width: 780px) {
   footer {
     grid-template-columns: 1fr 1fr;
-    column-gap: 10em;
-    padding: 1em;
-    justify-content: center;
+    column-gap: 1em;
+    padding: 1.5em;
+    justify-content: space-around;
     background-image: linear-gradient(#e0d5c943, #e0d5c943),
       url(images/w-vine.png);
   }
 
-  .general {
+  /* .general {
     justify-self: end;
-  }
+  } */
 
   footer > * {
     margin: 0;
@@ -1000,6 +1003,12 @@ small {
     --font-md: 1.1rem;
     --font-lg: 1.2rem;
     --module-spacing: 1em;
+  }
+
+  img.q:first-of-type {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    align-self: start;
   }
 
   span.rating-number,
@@ -1163,8 +1172,7 @@ small {
     margin-bottom: 0.4em;
     text-align: center;
 
-    grid-row: 2/3;
-    grid-column: 2/3;
+    grid-column: 1/-1;
   }
 
   blockquote br {
@@ -1176,12 +1184,16 @@ small {
     max-width: 1em;
   }
 
+  #qt .btns {
+    grid-column: 1/-1;
+  }
+
   img.author {
     transform: none;
     width: 30vw;
 
+    grid-column: 1/-1;
     grid-row: 1/2;
-    grid-column: 2/3;
     justify-self: center;
   }
 

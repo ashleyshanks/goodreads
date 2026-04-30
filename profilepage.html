@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="wiph=device-wiph, initial-scale=1.0" />
     <title>Goodreads | Meet your next favorite book</title>
     <meta
       name="description"
@@ -93,7 +93,7 @@
                   <path
                     d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
                     stroke="currentColor"
-                    stroke-width="2"
+                    stroke-wiph="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
@@ -151,8 +151,11 @@
     
             <div id="stats">
               <p id="username">goodreadsuser</p>
+              <p>•</p>
               <p ><span id="book-count"></span> books read</p>
+              <p>•</p>
               <p ><span id="friend-count">208</span> connections</p>
+              <p>•</p>
               <p ><span id="review-count"> </span> reviews</p>
             </div>
             <section class="shelf">
@@ -181,58 +184,69 @@
           <div class="border"></div>
         </section>
         <div id="user-qt">
-          <img class="q" src="images/l-q.svg" alt="double quotes" />
+            <div class="img">
+                <img id="sm-leaves" src="images/smleaves.png" alt="decorative leaves" />
+              </div>
+          <div class="quote">
           <blockquote>
-            A reader lives a thousand<br />
+            A reader lives a thousand
             lives before they die.
           </blockquote>
           <div class="btns">
             <button class="secondary">Meet the Author</button>
             <button class="tertiary">George R.R. Martin</button>
           </div>
-          <img id="sm-leaves" src="images/smleaves.png" alt="decorative leaves" />
-          <img class="q" src="images/r-q.svg" alt="double quotes" />
+        </div>
+        
         </div>
         <section class="shelf" id="reader-recap">
           <div class="arch">
             <h2>2026 Reader Recap</h2>
           </div>
           <div id="recap">
-            <div id="recap-stack">
-              <div class="visual"></div>
-              <p><span class="inches"></span>" Book Stack</p>
+        
+              <img src="images/bookstack.png" alt="bookstack">
+              <p id="stack-height"><span class="inches">95</span>" Book Stack</p>
+              
+           
+              <div id="pg-ct" class="num">
+                <p>394034</p>
+                <p>Pages read</p>
+                
+              </div>
+
+              <div id="bk-ct" class="num">
+                <p>80</p>
+                <p>Books explored</p>
+                
+              </div>
+
+              <div id="fr-ct" class="num">
+                
+                <p>25</p>
+                <p>Connections made</p>
+              </div>
+       
+
+            
+              <div id="top-genre" class="txt"> 
+               
+                <p>Science-Fiction</p>
+                <p>Most read genre</p>
+              </div>
+
+              <div id="top-reviewed-author" class="txt">
+                
+                <p>Pierce Brown</p>
+                <p>Top reviewed author</p>
+              </div>
+
+              <div id="most-read-author" class="txt">
+                
+                <p>Becky Chambers</p>
+                <p>Most read author</p>
+              </div>
             </div>
-            <dl id="recap-info">
-              <div class="num" id="pg-ct">
-                <dt>Pages read</dt>
-                <dd>394034</dd>
-              </div>
-
-              <div class="num" id="bk-ct">
-                <dt>Books explored</dt>
-                <dd>80</dd>
-              </div>
-
-              <div class="num" id="fr-ct">
-                <dt>Connections made</dt>
-                <dd>25</dd>
-              </div>
-
-              <div class="txt" id="top-genre">
-                <dt>Most read genre</dt>
-                <dd>Science Fiction</dd>
-              </div>
-
-              <div class="txt" id="top-reviewed-author">
-                <dt>Top reviewed author</dt>
-                <dd>Pierce Brown</dd>
-              </div>
-
-              <div class="txt" id="most-read-author">
-                <dt>Most read author</dt>
-                <dd>Becky Chambers</dd>
-              </div>
-            </dl>
           </div>
           <div class="border"></div>
         </section>

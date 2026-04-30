@@ -5,8 +5,13 @@
 
 #profile {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: min-content 1fr;
+  padding-top: 1.5em;
   /* grid-template-rows: 100px 1fr min-content; */
+}
+
+#profile .shelf {
+  position: relative;
 }
 
 #prof-banner img {
@@ -18,18 +23,39 @@
   object-position: center; /* crop from the center */
 }
 
+#profile .arch {
+  margin-top: 0.5em;
+}
+
+#bio {
+  flex: 1;
+  padding: 1em;
+}
 #prof-banner {
   overflow: hidden;
   border-radius: 50px 50px 10px 10px;
-  margin: 0 15px;
+
   z-index: -1;
   grid-area: 1 / 1 / 2 / -1;
 
-  width: 100%;
+  width: 98%;
+  justify-self: center;
+}
+
+#profile .btns {
+  grid-area: 3 / 1 / 4 / 2;
+  margin-top: 0.5em;
+}
+
+#modules h2 {
+  padding-left: 0.8em;
+}
+.arch {
+  min-height: 35px;
 }
 
 #sm-leaves {
-  width: 200px;
+  width: 300px;
 }
 
 #prof-pic {
@@ -41,8 +67,13 @@
 #stats {
   background: url(images/canvastexture.png), var(--md-neutral);
   border-radius: 50px;
-  padding: 0.5em;
-  text-align: center;
+  padding: 0.15em;
+  padding-bottom: 0.19em;
+  margin-top: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
 }
 
 #username {
@@ -51,17 +82,13 @@
   font-weight: 500;
 }
 
-#stats span:not(:first-of-type) {
-  margin-left: 2em;
-}
-
-#book-count::before,
+/* #book-count::before,
 #friend-count::before,
 #review-count::before {
   content: "•";
-  margin-right: 2em;
+  margin: 0 1vw;
   color: var(--dk-neutral);
-}
+} */
 
 #profile h2 {
   font-family: lora, serif;
@@ -72,8 +99,296 @@
   margin-left: 0.15em;
 }
 
+#profile-pic {
+  width: 100%;
+}
+
+#about-main {
+  margin: 0 1vw;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+
+  grid-area: 2 / 2 / 4 / 3;
+}
+
+.books {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+#profile .shelf {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* allows shelf to fill remaining space */
+  min-height: 0; /* prevents overflow issues */
+}
+
+#modules {
+  display: block;
+  margin-top: 1.5em;
+}
+
+#stats p:not(:first-of-type) {
+  font-size: 0.8rem;
+}
+
+#user-qt {
+  display: flex;
+  align-items: center;
+  padding: 3em 0;
+}
+
+#user-qt .quote {
+  display: flex;
+  flex-direction: column;
+}
+
+/* #user-qt blockquote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  position: relative;
+  padding: 0.5em 0.8em;
+} */
+
+blockquote {
+  position: relative;
+}
+
+blockquote::before {
+  content: url("../images/l-q.svg");
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-10px) translateX(-6px);
+}
+
+blockquote::after {
+  content: url("../images/r-q.svg");
+  display: inline-block;
+  /* margin-top: 1rem; */
+  width: 12px;
+  height: 12px;
+  transform: translateY(-10px) translateX(6px);
+}
+#user-qt .btns {
+  margin: 0;
+
+  margin-top: 0.6em;
+}
+
+#recap img {
+  width: 150px;
+  position: absolute;
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+#stack-height {
+  grid-area: 3 / 1 / 4 / 2;
+}
+
+#recap {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: space-between;
+  /* grid-template-rows: repeat(3, 1fr); */
+  grid-gap: 0.8em;
+  margin: 1.4em 2em;
+  padding-bottom: 0.5em;
+}
+
+#recap p:last-of-type {
+  font-size: 0.8rem;
+}
+
+#pg-ct,
+#top-genre {
+  grid-row: 1/2;
+}
+
+#bk-ct,
+#top-reviewed-author {
+  grid-row: 2 / 3;
+}
+#fr-ct,
+#most-read-author {
+  grid-row: 3 / 4;
+}
+#stack-height {
+  align-self: end;
+}
+
+.num {
+  grid-column: 2/3;
+}
+
+.txt {
+  grid-column: 3/4;
+}
+
+#recap p {
+  line-height: normal;
+}
+#recap p:first-of-type {
+  font-family: lora, serif;
+  font-size: 1.7rem;
+  /* font-style: italic; */
+  font-weight: 500;
+}
+@media (max-width: 490px) {
+  #recap p:last-of-type {
+    font-size: 0.8rem;
+  }
+
+  #recap p:first-of-type {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 685px) {
+  .books {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--module-spacing);
+  }
+
+  .book:nth-of-type(4) {
+    display: none;
+  }
+  #recap {
+    justify-content: space-around;
+    grid-template-columns: auto;
+
+    /* grid-column-gap: 14vw; */
+  }
+  #recap img {
+    width: 40vw;
+    position: static;
+    grid-area: 1 / 1 / 3 / 3;
+    justify-self: center;
+  }
+
+  #stack-height {
+    grid-area: 3 / 1 / 4 / 3;
+    justify-self: center;
+    font-size: 2.5rem !important;
+  }
+
+  #pg-ct,
+  #top-genre {
+    margin-top: -0.5em;
+  }
+
+  #pg-ct,
+  #top-genre {
+    grid-row: 4/5;
+  }
+
+  #bk-ct,
+  #top-reviewed-author {
+    grid-row: 5 / 6;
+  }
+  #fr-ct,
+  #most-read-author {
+    grid-row: 6 / 7;
+  }
+
+  .num {
+    grid-column: 1/2;
+  }
+
+  .txt {
+    grid-column: 2/3;
+  }
+}
+
+@media (min-width: 685px) and (max-width: 800px) {
+  .books {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .book:last-of-type,
+  .book:nth-of-type(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  #profile {
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5em;
+  }
+
+  #prof-banner {
+    grid-area: 1 / 1 / 2 / -2;
+  }
+
+  #prof-pic {
+    grid-area: 1 / 1 / 3 / 2;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 3em;
+  }
+
+  #profile .btns {
+    grid-area: 4 / 1 / 5 / 2;
+    flex-direction: row;
+  }
+
+  #bio {
+    min-height: 4em;
+  }
+  #about-main {
+    grid-area: 3 / 1 / 4 / 2;
+    /* margin: 0 3.7em; */
+  }
+
+  #stats {
+    padding: 0 4.5vw;
+  }
+
+  /* #about-main .shelf {
+    text-align: center;
+  } */
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+  .books {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .book:last-of-type {
+    display: none;
+  }
+}
+
 @media (max-width: 1000px) {
   #profile h2 {
     font-size: 2em;
+  }
+
+  blockquote {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+  }
+
+  #user-qt {
+    flex-direction: column;
+    margin: 0 3.7em;
+  }
+
+  #user-qt .quote {
+    align-items: center;
+  }
+}
+
+@media (max-width: 565px) {
+  #profile .btns {
+    flex-direction: column;
+  }
+
+  #recap {
+    margin: 0.8em 0.6em;
   }
 }
